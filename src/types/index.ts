@@ -47,9 +47,12 @@ export interface RouteCalculationResult {
   durationMinutes: number;
   tollDistanceKm: number;
   tollCost: number;
-  tollType: 'free_toll_system' | 'estimated_highway' | 'mixed';
+  tollType: 'free_toll_system' | 'estimated_highway' | 'mixed' | 'no_toll';
   geometry: [number, number][]; // lat, lng pairs
   summary: string;
+  hasToll?: boolean;
+  routeName?: string;
+  alternatives?: RouteCalculationResult[];
 }
 
 export interface TripCostBreakdown {
