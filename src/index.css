@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Leaflet fix for clean rendering */
+.leaflet-container {
+  font-family: inherit;
+  width: 100%;
+  height: 100%;
+}
