@@ -14,6 +14,19 @@ export interface VehiclePreset {
   description: string;
 }
 
+export interface CarDatasetEntry {
+  id: string;
+  make: string;
+  model: string;
+  fullName: string;
+  engineSize?: number;
+  cylinders?: number;
+  fuel: string; // 'E', 'D', 'E/N', 'Z', 'X'
+  fuelConsumptionComb: number; // L/100km
+  co2Emissions: number; // g/km
+  fuelConsumptionGPL?: number; // L/100km per bifuel
+}
+
 export interface FuelPrices {
   petrol: number;         // €/L
   diesel: number;         // €/L
@@ -27,6 +40,12 @@ export interface FuelPrices {
 export interface Coordinates {
   lat: number;
   lng: number;
+}
+
+export interface WaypointItem {
+  id: string;
+  name: string;
+  coords: Coordinates | null;
 }
 
 export interface LocationSuggestion {
@@ -50,6 +69,8 @@ export interface RouteCalculationResult {
   tollType: 'free_toll_system' | 'estimated_highway' | 'mixed' | 'no_toll';
   geometry: [number, number][]; // lat, lng pairs
   summary: string;
+  entryBooth?: string;
+  exitBooth?: string;
   hasToll?: boolean;
   routeName?: string;
   alternatives?: RouteCalculationResult[];

@@ -1,17 +1,25 @@
 import React from 'react';
-import { RouteCalculationResult, VehiclePreset, FuelPrices, ConsumptionUnit, FuelType } from '../types';
+import { RouteCalculationResult, VehiclePreset, FuelPrices, ConsumptionUnit, FuelType, CarDatasetEntry, Coordinates, WaypointItem } from '../types';
 import { calculateFuelConsumed, calculateCo2Emissions } from '../services/fuelService';
-import { Users, Fuel, CreditCard, ArrowLeftRight, Clock, Navigation, Leaf, Share2, Check } from 'lucide-react';
+import { Users, Fuel, CreditCard, ArrowLeftRight, Clock, Navigation, Leaf, Share2, Check, ExternalLink } from 'lucide-react';
 
 interface CostSummaryProps {
   route: RouteCalculationResult;
   originName?: string;
   destName?: string;
+  originCoords?: Coordinates | null;
+  destCoords?: Coordinates | null;
+  waypoints?: WaypointItem[];
+  avoidTolls?: boolean;
   vehicle: VehiclePreset | null;
+  selectedCarDataset: CarDatasetEntry | null;
   fuelType: FuelType;
   customConsumption: number;
+  consumptionGPL?: number;
+  bifuelRatio?: number;
   consumptionUnit: ConsumptionUnit;
   customFuelPrice: number;
+  co2PerKm: number | null;
   passengers: number;
   onPassengersChange: (val: number) => void;
   isRoundTrip: boolean;
@@ -23,11 +31,19 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
   route,
   originName,
   destName,
+  originCoords,
+  destCoords,
+  waypoints = [],
+  avoidTolls = false,
   vehicle,
+  selectedCarDataset,
   fuelType,
   customConsumption,
+  consumptionGPL = 0,
+  bifuelRatio = 100,
   consumptionUnit,
   customFuelPrice,
+  co2PerKm,
   passengers,
   onPassengersChange,
   isRoundTrip,
@@ -40,7 +56,20 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
   const totalDurationMinutes = route.durationMinutes * multiplier;
 
   // Calcolo consumo
-  const fuelConsumedUnits = calculateFuelConsumed(totalKm, customConsumption, consumptionUnit);
+  const isEnBifuel = selectedCarDataset && selectedCarDataset.fuel === 'E/N';
+  let fuelConsumedUnits = 0;
+
+  if (isEnBifuel) {
+    const ratioGpl = bifuelRatio / 100;
+    const gplKm = totalKm * ratioGpl;
+    const petrolKm = totalKm * (1 - ratioGpl);
+    const gplConsumed = (gplKm / 100) * consumptionGPL;
+    const petrolConsumed = (petrolKm / 100) * customConsumption;
+    fuelConsumedUnits = Math.round((gplConsumed + petrolConsumed) * 10) / 10;
+  } else {
+    fuelConsumedUnits = calculateFuelConsumed(totalKm, customConsumption, consumptionUnit);
+  }
+
   const fuelTotalCost = Math.round(fuelConsumedUnits * customFuelPrice * 100) / 100;
 
   // Calcolo pedaggio
@@ -50,8 +79,17 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
   const grandTotal = Math.round((fuelTotalCost + tollTotalCost) * 100) / 100;
   const perPerson = Math.round((grandTotal / Math.max(1, passengers)) * 100) / 100;
 
-  // Emissioni CO2
-  const co2Kg = calculateCo2Emissions(fuelType, fuelConsumedUnits);
+  // Emissioni CO2: se fornito da dataset/manuale (g/km), calcola (totalKm * co2PerKm) / 1000 in kg
+  // altrimenti usa il calcolo di stima generico
+  const co2Kg = (co2PerKm !== null && co2PerKm > 0)
+    ? Math.round(((totalKm * co2PerKm) / 1000) * 10) / 10
+    : calculateCo2Emissions(fuelType, fuelConsumedUnits);
+
+  const vehicleDisplayName = selectedCarDataset
+    ? `${selectedCarDataset.make} ${selectedCarDataset.model}`
+    : vehicle
+    ? vehicle.name
+    : '';
 
   const formatDuration = (mins: number) => {
     const hours = Math.floor(mins / 60);
@@ -59,17 +97,48 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
     return hours > 0 ? `${hours}h ${m}m` : `${m}m`;
   };
 
+  // Generatore URL gratuito di navigazione su Google Maps
+  const getGoogleMapsUrl = (): string => {
+    const originParam = originCoords
+      ? `${originCoords.lat},${originCoords.lng}`
+      : encodeURIComponent(originName || route.originName || '');
+    const destParam = destCoords
+      ? `${destCoords.lat},${destCoords.lng}`
+      : encodeURIComponent(destName || route.destName || '');
+
+    const validWaypoints = waypoints.filter(wp => wp.coords !== null);
+    const waypointsParam = validWaypoints.length > 0
+      ? validWaypoints.map(wp => `${wp.coords!.lat},${wp.coords!.lng}`).join('|')
+      : '';
+
+    let url = `https://www.google.com/maps/dir/?api=1&origin=${originParam}&destination=${destParam}&travelmode=driving`;
+    if (waypointsParam) {
+      url += `&waypoints=${encodeURIComponent(waypointsParam)}`;
+    }
+    // Imposta opzione evita pedaggi se selezionata dall'utente
+    if (avoidTolls || route.tollCost === 0) {
+      url += `&avoid=tolls`;
+    }
+
+    return url;
+  };
+
   const handleShare = () => {
     const origin = originName || route.originName || '';
     const dest = destName || route.destName || '';
+    const validWaypoints = waypoints.filter(wp => wp.coords !== null && wp.name);
 
     const text = `🚗 Viaggio calcolato con Trip Calculator:\n` +
       (origin ? `📍 Partenza: ${origin}\n` : '') +
+      (validWaypoints.length > 0 ? `🛑 Tappe: ${validWaypoints.map(w => w.name).join(' ➔ ')}\n` : '') +
       (dest ? `🏁 Arrivo: ${dest}\n` : '') +
-      `Tratta: ${totalKm} km (${formatDuration(totalDurationMinutes)})${isRoundTrip ? ' [A/R]' : ''}\n` +
+      (vehicleDisplayName ? `🚘 Mezzo: ${vehicleDisplayName}\n` : '') +
+      `Tratta: ${totalKm} km (~${formatDuration(totalDurationMinutes)})${isRoundTrip ? ' [A/R]' : ''}\n` +
       `⛽ Carburante: €${fuelTotalCost.toFixed(2)} (${fuelConsumedUnits.toFixed(1)} ${fuelType === 'electric' ? 'kWh' : 'L'})\n` +
       `🛣️ Pedaggi: €${tollTotalCost.toFixed(2)}\n` +
-      `💰 TOTALE: €${grandTotal.toFixed(2)} (${passengers > 1 ? `€${perPerson.toFixed(2)} a testa in ${passengers} passeggeri` : '1 passeggero'})\n`;
+      `💰 TOTALE: €${grandTotal.toFixed(2)} (${passengers > 1 ? `€${perPerson.toFixed(2)} a testa in ${passengers} passeggeri` : '1 passeggero'})\n` +
+      `🌱 CO₂: ${co2Kg} kg\n` +
+      `🗺️ Naviga: ${getGoogleMapsUrl()}\n`;
     
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -94,24 +163,37 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
           </div>
         </div>
 
-        {/* Pulsante Copia / Condividi */}
-        <button
-          onClick={handleShare}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition"
-          title="Copia riepilogo negli appunti"
-        >
-          {copied ? (
-            <>
-              <Check className="w-3.5 h-3.5 text-green-600" />
-              <span className="text-green-600 font-semibold">Copiato!</span>
-            </>
-          ) : (
-            <>
-              <Share2 className="w-3.5 h-3.5" />
-              <span>Condividi spesa</span>
-            </>
-          )}
-        </button>
+        {/* Pulsanti Condividi e Google Maps */}
+        <div className="flex items-center gap-2">
+          <a
+            href={getGoogleMapsUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition"
+            title="Apri itinerario e avvia navigatore su Google Maps"
+          >
+            <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
+            <span>Google Maps</span>
+          </a>
+
+          <button
+            onClick={handleShare}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition cursor-pointer"
+            title="Copia riepilogo negli appunti"
+          >
+            {copied ? (
+              <>
+                <Check className="w-3.5 h-3.5 text-green-600" />
+                <span className="text-green-600 font-semibold">Copiato!</span>
+              </>
+            ) : (
+              <>
+                <Share2 className="w-3.5 h-3.5" />
+                <span>Condividi spesa</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Dati Viaggio & Toggle A/R */}
@@ -127,7 +209,7 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
         <div className="bg-slate-50 p-3 rounded-xl">
           <div className="flex items-center gap-1.5 text-slate-500 text-xs font-medium">
             <Clock className="w-3.5 h-3.5 text-indigo-500" />
-            <span>Tempo stimato</span>
+            <span>Tempo stimato (-20%)</span>
           </div>
           <p className="text-base font-bold text-slate-800 mt-1">{formatDuration(totalDurationMinutes)}</p>
         </div>
@@ -142,7 +224,7 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
           </div>
           <button
             onClick={onRoundTripToggle}
-            className={`w-11 h-6 flex items-center rounded-full p-1 transition duration-200 ease-in-out ${
+            className={`w-11 h-6 flex items-center rounded-full p-1 transition duration-200 ease-in-out cursor-pointer ${
               isRoundTrip ? 'bg-blue-600' : 'bg-slate-300'
             }`}
           >
@@ -165,10 +247,11 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
             </div>
             <div>
               <p className="text-sm font-semibold text-slate-900">
-                Spesa Carburante {vehicle ? `(${vehicle.name})` : ''}
+                Spesa Carburante {vehicleDisplayName ? `(${vehicleDisplayName})` : ''}
               </p>
               <p className="text-xs text-slate-500">
                 {fuelConsumedUnits.toFixed(1)} {fuelType === 'electric' ? 'kWh' : 'litri'} @ €{customFuelPrice.toFixed(3)}/{fuelType === 'electric' ? 'kWh' : 'L'}
+                {isEnBifuel ? ` (Ripartizione: ${bifuelRatio}% GPL)` : ''}
               </p>
             </div>
           </div>
@@ -183,7 +266,7 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
             </div>
             <div>
               <p className="text-sm font-semibold text-slate-900">
-                Pedaggio Autostradale
+                Pedaggio Autostradale {route.entryBooth && route.exitBooth ? `(${route.entryBooth} ➔ ${route.exitBooth})` : ''}
               </p>
               <p className="text-xs text-slate-500">
                 {route.summary}
@@ -203,14 +286,14 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
         <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-lg">
           <button
             onClick={() => onPassengersChange(Math.max(1, passengers - 1))}
-            className="w-7 h-7 flex items-center justify-center rounded bg-white text-slate-700 font-bold hover:bg-slate-50 shadow-xs"
+            className="w-7 h-7 flex items-center justify-center rounded bg-white text-slate-700 font-bold hover:bg-slate-50 shadow-xs cursor-pointer"
           >
             -
           </button>
           <span className="w-6 text-center text-xs font-bold text-slate-800">{passengers}</span>
           <button
             onClick={() => onPassengersChange(Math.min(9, passengers + 1))}
-            className="w-7 h-7 flex items-center justify-center rounded bg-white text-slate-700 font-bold hover:bg-slate-50 shadow-xs"
+            className="w-7 h-7 flex items-center justify-center rounded bg-white text-slate-700 font-bold hover:bg-slate-50 shadow-xs cursor-pointer"
           >
             +
           </button>
@@ -221,7 +304,8 @@ export const CostSummary: React.FC<CostSummaryProps> = ({
       <div className="flex items-center gap-2 text-xs text-emerald-700 bg-emerald-50 px-3 py-2 rounded-xl">
         <Leaf className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
         <span>
-          Impatto stimato: <strong>{co2Kg} kg di CO₂</strong> emessi per questo itinerario.
+          Impatto stimato: <strong>{co2Kg} kg di CO₂</strong> emessi per questo itinerario
+          {co2PerKm !== null ? ` (basato su ${co2PerKm} g/km da scheda veicolo)` : ''}.
         </span>
       </div>
     </div>

@@ -1,0 +1,972 @@
+Make,Model,EngineSize,Cylinders,Fuel,FuelConsumptionCity,FuelConsumptionHwy,FuelConsumptionComb,CO2Emissions,FuelConsumptionGPL
+,,(L),,Type,City (L/100 km),Hwy (L/100 km),Comb (L/100 km),(g/km),N/A
+Acura,ILX,2.4,4.0,Z,9.9,7,8.6,200,N/A
+Acura,MDX SH-AWD,3.5,6.0,Z,12.6,9.4,11.2,263,N/A
+Acura,RDX SH-AWD,2,4.0,Z,11,8.6,9.9,232,N/A
+Acura,RDX SH-AWD A-SPEC,2,4.0,Z,11.3,9.1,10.3,242,N/A
+Acura,TLX SH-AWD,2,4.0,Z,11.2,8,9.8,230,N/A
+Acura,TLX SH-AWD A-SPEC,2,4.0,Z,11.3,8.1,9.8,231,N/A
+Acura,TLX Type S,3,6.0,Z,12.3,9.4,11,256,N/A
+Acura,TLX Type S (Performance Tire),3,6.0,Z,12.3,9.8,11.2,261,N/A
+Alfa Romeo,Giulia,2,4.0,Z,10,7.2,8.7,205,N/A
+Alfa Romeo,Giulia AWD,2,4.0,Z,10.5,7.7,9.2,217,N/A
+Alfa Romeo,Giulia Quadrifoglio,2.9,6.0,Z,13.5,9.3,11.6,271,N/A
+Alfa Romeo,Stelvio,2,4.0,Z,10.3,8.1,9.3,218,N/A
+Alfa Romeo,Stelvio AWD,2,4.0,Z,10.8,8.3,9.6,226,N/A
+Alfa Romeo,Stelvio AWD Quadrifoglio,2.9,6.0,Z,13.9,10.3,12.3,288,N/A
+Aston Martin,DB11 V8,4,8.0,Z,13,9.8,11.5,271,N/A
+Aston Martin,DB11 V12,5.2,12.0,Z,16.4,10.7,13.8,324,N/A
+Aston Martin,DBS V12,5.2,12.0,Z,16.4,10.7,13.8,324,N/A
+Aston Martin,DBX V8,4,8.0,Z,16.8,11.9,14.6,343,N/A
+Aston Martin,Vantage V8,4,8.0,Z,13.1,9.6,11.5,270,N/A
+Audi,A3 Sedan 40 TFSI quattro,2,4.0,X,8.5,6.6,7.6,178,N/A
+Audi,A4 Sedan 40 TFSI quattro,2,4.0,Z,9.1,7,8.2,190,N/A
+Audi,A4 Sedan 45 TFSI quattro,2,4.0,Z,9.8,7.6,8.8,205,N/A
+Audi,A4 allroad 45 TFSI quattro,2,4.0,Z,9.8,7.9,8.9,208,N/A
+Audi,A5 Cabriolet 45 TFSI quattro,2,4.0,Z,10.4,7.5,9.1,214,N/A
+Audi,A5 Coupe 45 TFSI quattro,2,4.0,Z,9.8,7.6,8.8,205,N/A
+Audi,A5 Sportback 45 TFSI quattro,2,4.0,Z,9.8,7.6,8.8,205,N/A
+Audi,A6 Sedan 45 TFSI quattro,2,4.0,Z,10.2,7.4,8.9,208,N/A
+Audi,A6 Sedan 55 TFSI quattro,3,6.0,Z,11.1,7.8,9.6,224,N/A
+Audi,A6 allroad 55 TFSI quattro,3,6.0,Z,11.5,8.3,10,234,N/A
+Audi,A7 Sportback 55 TFSI quattro,3,6.0,Z,11.1,7.8,9.6,224,N/A
+Audi,A8 L Sedan 55 TFSI quattro,3,6.0,Z,12.6,8.3,10.6,248,N/A
+Audi,Q3 40 TFSI quattro,2,4.0,X,10.4,7.7,9.2,215,N/A
+Audi,Q3 45 TFSI quattro,2,4.0,X,11.4,8.3,10,233,N/A
+Audi,Q5 40 TFSI quattro,2,4.0,Z,10.3,8.1,9.3,217,N/A
+Audi,Q5 45 TFSI quattro,2,4.0,Z,10.3,8.4,9.4,220,N/A
+Audi,Q5 Sportback 45 TFSI quattro,2,4.0,Z,10.3,8.4,9.4,220,N/A
+Audi,Q7 45 TFSI quattro,2,4.0,Z,12,9.4,10.8,252,N/A
+Audi,Q7 55 TFSI quattro,3,6.0,Z,12.8,10.5,11.7,273,N/A
+Audi,Q8 55 TFSI quattro,3,6.0,Z,12.8,10.5,11.7,273,N/A
+Audi,R8 Coupe Performance,5.2,10.0,Z,16.7,10.3,13.8,322,N/A
+Audi,R8 Coupe Performance quattro,5.2,10.0,Z,17.9,12.1,15.3,356,N/A
+Audi,R8 Spyder Performance,5.2,10.0,Z,16.7,10.3,13.8,322,N/A
+Audi,R8 Spyder Performance quattro,5.2,10.0,Z,17.9,12.1,15.3,356,N/A
+Audi,RS 5 Coupe quattro,2.9,6.0,Z,13,9.4,11.4,267,N/A
+Audi,RS 5 Sportback quattro,2.9,6.0,Z,13.1,9.4,11.4,268,N/A
+Audi,RS 6 Avant quattro,4,8.0,Z,16.1,10.7,13.7,319,N/A
+Audi,RS 7 Sportback quattro,4,8.0,Z,16,10.5,13.5,315,N/A
+Audi,RS Q8 quattro,4,8.0,Z,18,12.3,15.4,360,N/A
+Audi,S3 Sedan quattro,2,4.0,Z,10,7.2,8.8,206,N/A
+Audi,S4 Sedan quattro,3,6.0,Z,11.1,8,9.7,227,N/A
+Audi,S5 Cabriolet quattro,3,6.0,Z,11.3,8.4,10,233,N/A
+Audi,S5 Coupe quattro,3,6.0,Z,11.1,8,9.7,227,N/A
+Audi,S5 Sportback quattro,3,6.0,Z,11.1,8,9.7,227,N/A
+Audi,S6 Sedan quattro,2.9,6.0,Z,12.8,8.5,10.9,254,N/A
+Audi,S7 Sportback quattro,2.9,6.0,Z,12.8,8.5,10.9,254,N/A
+Audi,S8 Sedan quattro,4,8.0,Z,16.9,10.2,13.8,323,N/A
+Audi,SQ5 quattro,3,6.0,Z,12.5,9.7,11.2,262,N/A
+Audi,SQ5 Sportback quattro,3,6.0,Z,12.5,9.7,11.2,262,N/A
+Audi,SQ7 quattro,4,8.0,Z,16,11.4,13.9,325,N/A
+Audi,SQ8 quattro,4,8.0,Z,16,11.4,13.9,325,N/A
+Audi,TT Coupe 45 TFSI quattro,2,4.0,X,10.5,7.9,9.4,218,N/A
+Audi,TT Roadster 45 TFSI quattro,2,4.0,X,10.5,7.9,9.4,218,N/A
+Audi,TTS Coupe quattro,2,4.0,Z,10,7.7,9,209,N/A
+Bentley,Bentayga,4,8.0,Z,15.8,9.9,13.2,309,N/A
+Bentley,Bentayga Speed,6,12.0,Z,19,13,16.3,383,N/A
+Bentley,Continental GT,4,8.0,Z,14.9,9,12.2,287,N/A
+Bentley,Continental GT Speed,6,12.0,Z,19.6,12,16.2,379,N/A
+Bentley,Continental GT Convertible,4,8.0,Z,15.2,9.2,12.5,294,N/A
+Bentley,Continental GT Convertible Speed,6,12.0,Z,20.3,12.9,17,395,N/A
+Bentley,Flying Spur,4,8.0,Z,15.5,11.6,13.7,323,N/A
+Bentley,Flying Spur,6,12.0,Z,19.2,12.2,16,373,N/A
+BMW,330i xDrive Sedan,2,4.0,Z,9.5,6.9,8.3,195,N/A
+BMW,430i xDrive Cabriolet,2,4.0,Z,10,7.1,8.7,202,N/A
+BMW,430i xDrive Coupe,2,4.0,Z,10,7.1,8.7,202,N/A
+BMW,530i xDrive Sedan,2,4.0,Z,10.1,7.4,8.9,206,N/A
+BMW,540i xDrive Sedan,3,6.0,Z,10.5,8.1,9.4,219,N/A
+BMW,750i xDrive Sedan,4.4,8.0,Z,13.9,9.6,12,279,N/A
+BMW,750Li xDrive Sedan,4.4,8.0,Z,13.9,9.6,12,279,N/A
+BMW,Alpina B7,4.4,8.0,Z,13.9,9.6,12,279,N/A
+BMW,Alpina B8 Gran Coupe,4.4,8.0,Z,13.9,9.6,12,279,N/A
+BMW,Alpina XB7,4.4,8.0,Z,15.7,11.5,13.8,321,N/A
+BMW,M235i xDrive Gran Coupe,2,4.0,Z,10.4,7.8,9.2,214,N/A
+BMW,M240i xDrive Coupe,3,6.0,Z,10.4,7.5,9.1,212,N/A
+BMW,M3 Sedan,3,6.0,Z,14.7,10.1,12.6,293,N/A
+BMW,M3 Competition Sedan,3,6.0,Z,14.5,10.2,12.6,292,N/A
+BMW,M3 Competition Sedan M xDrive,3,6.0,Z,14.6,10.5,12.7,296,N/A
+BMW,M340i xDrive Sedan,3,6.0,Z,10.4,7.7,9.2,214,N/A
+BMW,M4 Competition Cabriolet M xDrive,3,6.0,Z,15.1,10.4,12.9,301,N/A
+BMW,M4 Coupe,3,6.0,Z,14.7,10.1,12.6,293,N/A
+BMW,M4 Competition Coupe,3,6.0,Z,14.5,10.2,12.6,292,N/A
+BMW,M4 Competition Coupe M xDrive,3,6.0,Z,14.6,10.5,12.7,296,N/A
+BMW,M440i xDrive Cabriolet,3,6.0,Z,10.4,7.4,9.1,211,N/A
+BMW,M440i xDrive Coupe,3,6.0,Z,10.4,7.7,9.2,214,N/A
+BMW,M440i xDrive Gran Coupe,3,6.0,Z,10.9,8,9.6,224,N/A
+BMW,M5 Sedan,4.4,8.0,Z,16.1,11,13.8,322,N/A
+BMW,M5 Competition,4.4,8.0,Z,16.1,11,13.8,322,N/A
+BMW,M5 CS,4.4,8.0,Z,16.1,11,13.8,322,N/A
+BMW,M550i xDrive Sedan,4.4,8.0,Z,13.5,9.3,11.6,271,N/A
+BMW,M760i xDrive Sedan,6.6,12.0,Z,17.8,11.9,15.1,354,N/A
+BMW,M8 Cabriolet,4.4,8.0,Z,16.1,11,13.8,322,N/A
+BMW,M8 Cabriolet Competition,4.4,8.0,Z,16.1,11,13.8,322,N/A
+BMW,M8 Coupe,4.4,8.0,Z,16.1,11,13.8,322,N/A
+BMW,M8 Coupe Competition,4.4,8.0,Z,16.1,11,13.8,322,N/A
+BMW,M8 Gran Coupe,4.4,8.0,Z,16.1,11,13.8,322,N/A
+BMW,M8 Gran Coupe Competition,4.4,8.0,Z,16.1,11,13.8,322,N/A
+BMW,M850i xDrive Cabriolet,4.4,8.0,Z,13.9,9.6,12,279,N/A
+BMW,M850i xDrive Coupe,4.4,8.0,Z,13.5,9.3,11.6,271,N/A
+BMW,M850i xDrive Gran Coupe,4.4,8.0,Z,13.9,9.6,12,279,N/A
+BMW,X1 xDrive28i,2,4.0,Z,10.3,7.7,9.1,213,N/A
+BMW,X2 xDrive28i,2,4.0,Z,9.9,7.6,8.8,207,N/A
+BMW,X2 M35i,2,4.0,Z,9.9,7.6,8.9,207,N/A
+BMW,X3 xDrive30i,2,4.0,Z,11,8.5,9.9,230,N/A
+BMW,X3 M,3,6.0,Z,15.7,11.7,13.9,323,N/A
+BMW,X3 M Competition,3,6.0,Z,15.7,11.7,13.9,323,N/A
+BMW,X3 M40i,3,6.0,Z,11.2,9.1,10.3,241,N/A
+BMW,X4 xDrive30i,2,4.0,Z,11,8.5,9.9,230,N/A
+BMW,X4 M,3,6.0,Z,15.7,11.7,13.9,323,N/A
+BMW,X4 M Competition,3,6.0,Z,15.7,11.7,13.9,323,N/A
+BMW,X4 M40i,3,6.0,Z,11.2,9.1,10.3,241,N/A
+BMW,X5 xDrive40i,3,6.0,Z,11.3,9.2,10.4,241,N/A
+BMW,X5 M,4.4,8.0,Z,17.9,13,15.7,364,N/A
+BMW,X5 M Competition,4.4,8.0,Z,17.9,13,15.7,364,N/A
+BMW,X5 M50i,4.4,8.0,Z,14.4,10.6,12.7,302,N/A
+BMW,X6 xDrive40i,3,6.0,Z,11.3,9.2,10.4,241,N/A
+BMW,X6 M,4.4,8.0,Z,17.9,13,15.7,364,N/A
+BMW,X6 M Competition,4.4,8.0,Z,17.9,13,15.7,364,N/A
+BMW,X6 M50i,4.4,8.0,Z,14.4,10.6,12.7,302,N/A
+BMW,X7 xDrive40i,3,6.0,Z,12.1,9.8,11.1,256,N/A
+BMW,X7 M50i,4.4,8.0,Z,15.7,11.5,13.8,321,N/A
+BMW,Z4 sDrive30i,2,4.0,Z,9.4,7.4,8.5,199,N/A
+BMW,Z4 M40i,3,6.0,Z,10.8,8.1,9.6,223,N/A
+Bugatti,Chiron,8,16.0,Z,26.8,16.6,22.2,522,N/A
+Bugatti,Chiron Pur Sport,8,16.0,Z,30.3,20.9,26.1,608,N/A
+Bugatti,Chiron Super Sport,8,16.0,Z,30.3,20.9,26.1,608,N/A
+Buick,Enclave,3.6,6.0,X,13,9.1,11.2,263,N/A
+Buick,Enclave AWD,3.6,6.0,X,13.6,9.6,11.8,277,N/A
+Buick,Encore,1.4,4.0,X,9.7,7.3,8.6,201,N/A
+Buick,Encore AWD,1.4,4.0,X,10.2,7.7,9.1,214,N/A
+Buick,Encore GX,1.2,3.0,X,8,7.6,7.8,184,N/A
+Buick,Encore GX,1.3,3.0,X,8.2,7.4,7.9,185,N/A
+Buick,Encore GX AWD,1.3,3.0,X,9,8.2,8.6,201,N/A
+Buick,Envision,2,4.0,X,10,7.6,8.9,209,N/A
+Buick,Envision AWD,2,4.0,X,10.5,8.2,9.5,220,N/A
+Cadillac,CT4,2,4.0,Z,10.2,7,8.8,206,N/A
+Cadillac,CT4,2.7,4.0,Z,11,7.6,9.5,221,N/A
+Cadillac,CT4 AWD,2,4.0,Z,10.5,7.6,9.2,216,N/A
+Cadillac,CT4 AWD,2.7,4.0,Z,11.4,8.2,10,233,N/A
+Cadillac,CT4-V,2.7,4.0,Z,11.9,8.2,10.2,239,N/A
+Cadillac,CT4-V AWD,2.7,4.0,Z,12,8.4,10.4,244,N/A
+Cadillac,CT4-V Blackwing,3.6,6.0,Z,15,9.7,12.6,297,N/A
+Cadillac,CT4-V Blackwing,3.6,6.0,Z,15.2,10.2,13,303,N/A
+Cadillac,CT5,2,4.0,Z,10.3,7.1,8.8,207,N/A
+Cadillac,CT5,3,6.0,Z,12.4,8.7,10.7,252,N/A
+Cadillac,CT5 AWD,2,4.0,Z,10.9,7.8,9.5,222,N/A
+Cadillac,CT5 AWD,3,6.0,Z,12.8,9.1,11.1,260,N/A
+Cadillac,CT5-V,3,6.0,Z,12.8,8.7,11,258,N/A
+Cadillac,CT5-V AWD,3,6.0,Z,12.8,9.1,11.1,260,N/A
+Cadillac,CT5-V Blackwing,6.2,8.0,Z,18.1,10.7,14.8,346,N/A
+Cadillac,CT5-V Blackwing,6.2,8.0,Z,18.3,11.4,15.2,356,N/A
+Cadillac,Escalade 4WD,3,6.0,D,11.7,9,10.5,281,N/A
+Cadillac,Escalade 4WD,6.2,8.0,Z,16.3,12.7,14.7,345,N/A
+Cadillac,Escalade 4WD (No Stop-Start),6.2,8.0,Z,17,12.7,15.1,353,N/A
+Cadillac,XT4,2,4.0,Z,10,7.8,9,211,N/A
+Cadillac,XT4 AWD,2,4.0,Z,10.9,8.2,9.7,225,N/A
+Cadillac,XT5,2,4.0,Z,10.8,8.2,9.6,225,N/A
+Cadillac,XT5 AWD,2,4.0,Z,11.2,8.7,10.1,237,N/A
+Cadillac,XT5 AWD,3.6,6.0,X,12.9,9.2,11.2,263,N/A
+Cadillac,XT6 AWD,2,4.0,Z,11.2,9,10.2,239,N/A
+Cadillac,XT6 AWD,3.6,6.0,X,13.1,9.5,11.5,269,N/A
+Chevrolet,Blazer,2,4.0,X,10.6,8,9.4,221,N/A
+Chevrolet,Blazer,3.6,6.0,X,12.3,8.8,10.7,252,N/A
+Chevrolet,Blazer AWD,2,4.0,X,10.8,8.7,9.9,232,N/A
+Chevrolet,Blazer AWD,3.6,6.0,X,12.6,9.2,11,259,N/A
+Chevrolet,Camaro,2,4.0,Z,10.9,7.8,9.5,222,N/A
+Chevrolet,Camaro,2,4.0,Z,12.6,8,10.5,239,N/A
+Chevrolet,Camaro,3.6,6.0,X,12.8,8.1,10.7,251,N/A
+Chevrolet,Camaro,3.6,6.0,X,14.4,9.1,12,281,N/A
+Chevrolet,Camaro SS,6.2,8.0,Z,14.6,8.9,12,281,N/A
+Chevrolet,Camaro SS,6.2,8.0,Z,14.9,9.9,12.6,296,N/A
+Chevrolet,Camaro ZL1,6.2,8.0,Z,18.3,11.2,15.1,355,N/A
+Chevrolet,Camaro ZL1,6.2,8.0,Z,17.2,12,14.9,349,N/A
+Chevrolet,Colorado,2.5,4.0,X,12.2,9.4,10.9,257,N/A
+Chevrolet,Colorado,2.8,4.0,D,11.8,7.9,10.1,270,N/A
+Chevrolet,Colorado,3.6,6.0,X,12.9,9.3,11.3,263,N/A
+Chevrolet,Colorado 4WD,2.5,4.0,X,12.6,9.9,11.4,267,N/A
+Chevrolet,Colorado 4WD,2.8,4.0,D,12.2,8.4,10.5,283,N/A
+Chevrolet,Colorado 4WD,3.6,6.0,X,14,9.9,12.1,283,N/A
+Chevrolet,Colorado ZR2 4WD,2.8,4.0,D,13.3,10.6,12.1,326,N/A
+Chevrolet,Colorado ZR2 4WD,3.6,6.0,X,15,13,14.1,329,N/A
+Chevrolet,Corvette,6.2,8.0,Z,15.1,9.6,12.6,297,N/A
+Chevrolet,Equinox,1.5,4.0,X,8.9,7.7,8.4,198,N/A
+Chevrolet,Equinox AWD,1.5,4.0,X,9.4,8,8.8,208,N/A
+Chevrolet,Malibu,1.5,4.0,X,8.2,6.6,7.5,175,N/A
+Chevrolet,Malibu,2,4.0,Z,10.7,7.1,9.1,213,N/A
+Chevrolet,Silverado,2.7,4.0,X,12.5,10.6,11.6,274,N/A
+Chevrolet,Silverado,3,6.0,D,10.2,7.5,8.9,240,N/A
+Chevrolet,Silverado FFV,5.3,8.0,X,16.2,12.3,14.5,341,N/A
+Chevrolet,Silverado FFV,5.3,8.0,E,21.5,16,19.1,321,N/A
+Chevrolet,Silverado,5.3,8.0,X,15.1,11.3,13.4,314,N/A
+Chevrolet,Silverado,5.3,8.0,X,14.4,11.3,13,304,N/A
+Chevrolet,Silverado 4WD,2.7,4.0,X,13.9,12,13.1,306,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire,2.7,4.0,X,14.7,13.1,14,328,N/A
+Chevrolet,Silverado 4WD,3,6.0,D,10.9,9.1,10.1,272,N/A
+Chevrolet,Silverado 4WD (With Sport Mode),3,6.0,D,10.5,9.1,9.9,265,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire,3,6.0,D,11.8,10.3,11.2,298,N/A
+Chevrolet,Silverado 4WD FFV,5.3,8.0,X,16.5,12.8,14.8,347,N/A
+Chevrolet,Silverado 4WD FFV,5.3,8.0,E,22,16.4,19.5,326,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire FFV,5.3,8.0,X,17.4,14.7,16.2,380,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire FFV,5.3,8.0,E,23.1,19.6,21.5,358,N/A
+Chevrolet,Silverado 4WD,5.3,8.0,X,15.6,11.9,13.9,327,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire,5.3,8.0,X,16.9,13.3,15.3,359,N/A
+Chevrolet,Silverado 4WD,5.3,8.0,X,14.7,11.8,13.4,314,N/A
+Chevrolet,Silverado 4WD (No DFM),5.3,8.0,X,16.8,12.4,14.8,347,N/A
+Chevrolet,Silverado 4WD (With Sport Mode),5.3,8.0,X,15.3,12.3,13.9,327,N/A
+Chevrolet,Silverado 4WD (No Stop-Start),5.3,8.0,X,16.1,12.4,14.4,339,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire,5.3,8.0,X,16.6,14,15.4,361,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire (No Stop-Start),5.3,8.0,X,16.8,13.9,15.5,364,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire (No DFM),5.3,8.0,X,18.1,13.8,16.2,381,N/A
+Chevrolet,Silverado 4WD,6.2,8.0,Z,15.7,11.9,14,329,N/A
+Chevrolet,Silverado 4WD (No Stop-Start),6.2,8.0,Z,16.6,12.3,14.7,345,N/A
+Chevrolet,Silverado 4WD Custom Trail Boss,6.2,8.0,Z,16.5,13.2,15,352,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire,6.2,8.0,Z,16.5,13.2,15,352,N/A
+Chevrolet,Silverado 4WD Mud Terrain Tire (No Stop-Start),6.2,8.0,Z,18.2,14.2,16.4,385,N/A
+Chevrolet,Silverado 4WD ZR2,6.2,8.0,Z,16.7,14.1,15.5,366,N/A
+Chevrolet,Spark,1.4,4.0,X,7.7,6.2,7,165,N/A
+Chevrolet,Spark,1.4,4.0,X,8,6.2,7.2,170,N/A
+Chevrolet,Suburban,3,6.0,D,11.2,8.7,10.1,272,N/A
+Chevrolet,Suburban,5.3,8.0,X,15.8,11.8,14,327,N/A
+Chevrolet,Suburban (No Stop-Start),5.3,8.0,X,16,11.9,14.1,332,N/A
+Chevrolet,Suburban 4WD,3,6.0,D,11.7,9,10.5,281,N/A
+Chevrolet,Suburban 4WD,5.3,8.0,X,15.9,12.4,14.3,336,N/A
+Chevrolet,Suburban 4WD (No Stop-Start),5.3,8.0,X,17,12.7,15.1,354,N/A
+Chevrolet,Suburban 4WD,6.2,8.0,Z,16.3,12.7,14.7,345,N/A
+Chevrolet,Suburban 4WD (No Stop-Start),6.2,8.0,Z,17,12.7,15.1,353,N/A
+Chevrolet,Tahoe,3,6.0,D,11,8.4,9.8,263,N/A
+Chevrolet,Tahoe,5.3,8.0,X,15.8,11.8,14,327,N/A
+Chevrolet,Tahoe (No Stop-Start),5.3,8.0,X,16,11.9,14.1,332,N/A
+Chevrolet,Tahoe 4WD,3,6.0,D,11.7,9,10.5,281,N/A
+Chevrolet,Tahoe 4WD,5.3,8.0,X,15.8,11.8,14,327,N/A
+Chevrolet,Tahoe 4WD (No Stop-Start),5.3,8.0,X,17,12.7,15.1,354,N/A
+Chevrolet,Tahoe 4WD,6.2,8.0,Z,16.3,12.7,14.7,345,N/A
+Chevrolet,Tahoe 4WD (No Stop-Start),6.2,8.0,Z,17,12.7,15.1,353,N/A
+Chevrolet,Trailblazer,1.2,3.0,X,8,7.6,7.8,184,N/A
+Chevrolet,Trailblazer,1.3,3.0,X,8,7.2,7.6,178,N/A
+Chevrolet,Trailblazer AWD,1.3,3.0,X,8.9,7.8,8.4,197,N/A
+Chevrolet,Traverse,3.6,6.0,X,13,8.8,11.1,260,N/A
+Chevrolet,Traverse AWD,3.6,6.0,X,13.6,9.6,11.8,277,N/A
+Chevrolet,Trax,1.4,4.0,X,9.7,7.3,8.6,201,N/A
+Chevrolet,Trax AWD,1.4,4.0,X,10.2,7.7,9.1,214,N/A
+Chrysler,300,3.6,6.0,X,12.4,7.8,10.3,242,N/A
+Chrysler,300,5.7,8.0,X,14.7,9.4,12.3,289,N/A
+Chrysler,300 AWD,3.6,6.0,X,12.8,8.7,11,258,N/A
+Chrysler,Grand Caravan,3.6,6.0,X,12.4,8.4,10.6,249,N/A
+Chrysler,Pacifica,3.6,6.0,X,12.4,8.4,10.6,249,N/A
+Chrysler,Pacifica AWD,3.6,6.0,X,14.1,9.4,12,279,N/A
+Dodge,Challenger,3.6,6.0,X,12.4,7.8,10.3,242,N/A
+Dodge,Challenger (MDS),5.7,8.0,X,14.7,9.4,12.3,289,N/A
+Dodge,Challenger,5.7,8.0,Z,15.6,10.1,13.1,307,N/A
+Dodge,Challenger (MDS),6.4,8.0,Z,15.8,9.6,13,305,N/A
+Dodge,Challenger,6.4,8.0,Z,16.7,10.4,13.9,325,N/A
+Dodge,Challenger AWD,3.6,6.0,X,12.8,8.7,11,258,N/A
+Dodge,Challenger Widebody (MDS),6.4,8.0,Z,15.8,9.6,13,305,N/A
+Dodge,Challenger Widebody,6.4,8.0,Z,16.7,10.4,13.9,325,N/A
+Dodge,Challenger SRT Hellcat,6.2,8.0,Z,17.6,10.7,14.5,339,N/A
+Dodge,Challenger SRT Hellcat,6.2,8.0,Z,18.1,11.4,15.1,352,N/A
+Dodge,Challenger SRT Hellcat Widebody,6.2,8.0,Z,18.6,11.3,15.3,359,N/A
+Dodge,Challenger SRT Hellcat Widebody,6.2,8.0,Z,18.1,11.4,15.1,352,N/A
+Dodge,Charger,3.6,6.0,X,12.4,7.8,10.3,242,N/A
+Dodge,Charger (MDS),5.7,8.0,X,14.7,9.4,12.3,289,N/A
+Dodge,Charger (MDS),6.4,8.0,Z,15.8,9.6,13,305,N/A
+Dodge,Charger AWD,3.6,6.0,X,12.8,8.7,11,258,N/A
+Dodge,Charger Widebody (MDS),6.4,8.0,Z,15.8,9.6,13,305,N/A
+Dodge,Charger SRT Hellcat Widebody,6.2,8.0,Z,19,11.5,15.6,368,N/A
+Dodge,Durango AWD,3.6,6.0,X,12.7,9.6,11.3,265,N/A
+Dodge,Durango AWD,5.7,8.0,X,16.7,10.9,14.1,331,N/A
+Dodge,Durango AWD SRT,6.4,8.0,Z,18.3,12.2,15.6,363,N/A
+FIAT,500X AWD,1.3,4.0,X,10,7.9,9.1,221,N/A
+Ford,Bronco 4WD,2.3,4.0,X,12.1,11.2,11.7,275,N/A
+Ford,Bronco 4WD,2.3,4.0,X,12.1,11.4,11.8,277,N/A
+Ford,Bronco 4WD,2.7,6.0,X,12.8,11.9,12.4,291,N/A
+Ford,Bronco Badlands 4WD,2.3,4.0,X,13.5,14,13.7,323,N/A
+Ford,Bronco Badlands 4WD,2.3,4.0,X,14.9,13.5,14.3,336,N/A
+Ford,Bronco Badlands 4WD,2.7,6.0,X,14.1,14.1,14.1,331,N/A
+Ford,Bronco Black Diamond 4WD,2.3,4.0,X,13.1,13.1,13.1,308,N/A
+Ford,Bronco Black Diamond 4WD,2.3,4.0,X,13.8,12.4,13.2,310,N/A
+Ford,Bronco Raptor 4WD,3,6.0,X,15.7,14.8,15.3,358,N/A
+Ford,Bronco Sasquatch 4WD,2.3,4.0,X,13.1,13.8,13.4,314,N/A
+Ford,Bronco Sasquatch 4WD,2.3,4.0,X,13.8,13.1,13.5,317,N/A
+Ford,Bronco Sasquatch 4WD,2.7,6.0,X,14.1,14.1,14.1,331,N/A
+Ford,Bronco Sport 4WD,1.5,3.0,X,9.3,8.4,8.9,209,N/A
+Ford,Bronco Sport 4WD,2,4.0,X,11.1,9,10.2,240,N/A
+Ford,EcoSport AWD,2,4.0,X,10.4,8,9.3,219,N/A
+Ford,Edge AWD,2,4.0,X,11.5,8.4,10.1,238,N/A
+Ford,Edge AWD,2,4.0,X,11.6,8.5,10.2,239,N/A
+Ford,Edge AWD,2.7,6.0,X,12.6,9.3,11.2,262,N/A
+Ford,Escape,1.5,3.0,X,8.5,6.8,7.8,182,N/A
+Ford,Escape AWD,1.5,3.0,X,9,7.6,8.4,198,N/A
+Ford,Escape AWD,2,4.0,X,10.5,7.5,9.2,216,N/A
+Ford,Escape Hybrid,2.5,4.0,X,5.4,6.3,5.8,136,N/A
+Ford,Escape Hybrid AWD,2.5,4.0,X,5.5,6.4,5.9,139,N/A
+Ford,Expedition 4X4,3.5,6.0,X,14.8,10.6,12.9,304,N/A
+Ford,Expedition 4X4 (Without Stop-Start),3.5,6.0,X,15.4,11.2,13.5,317,N/A
+Ford,Expedition Timberline 4X4,3.5,6.0,X,14.5,12.3,13.5,317,N/A
+Ford,Expedition Timberline 4X4 (Without Stop-Start),3.5,6.0,X,15.2,12.3,13.9,326,N/A
+Ford,Explorer AWD,2.3,4.0,X,11.7,8.6,10.3,242,N/A
+Ford,Explorer AWD (Without Stop-Start),2.3,4.0,X,12,9,10.7,252,N/A
+Ford,Explorer Timberline AWD,2.3,4.0,X,12.2,10.5,11.5,269,N/A
+Ford,Explorer Timberline AWD (Without Stop-Start),2.3,4.0,X,12.5,11,11.8,277,N/A
+Ford,Explorer AWD,3,6.0,X,13.4,9.8,11.8,277,N/A
+Ford,Explorer Hybrid AWD,3.3,6.0,X,10.1,9,9.6,225,N/A
+Ford,F-150,2.7,6.0,X,12.1,9.4,10.9,256,N/A
+Ford,F-150 (Without Stop-Start),2.7,6.0,X,13.5,10.1,12,282,N/A
+Ford,F-150 FFV,3.3,6.0,X,12.1,9.8,11.1,260,N/A
+Ford,F-150 FFV,3.3,6.0,E,16.8,12.8,15,249,N/A
+Ford,F-150,3.5,6.0,X,13.1,9.9,11.7,275,N/A
+Ford,F-150 (Without Stop-Start),3.5,6.0,X,13.7,10,12,281,N/A
+Ford,F-150 FFV,5,8.0,X,14.4,10.8,12.8,300,N/A
+Ford,F-150 FFV,5,8.0,E,20.8,14.3,17.9,298,N/A
+Ford,F-150 FFV (Without Stop-Start),5,8.0,X,14.7,10.6,12.9,302,N/A
+Ford,F-150 FFV (Without Stop-Start),5,8.0,E,20.1,14.1,17.4,289,N/A
+Ford,F-150 4X4,2.7,6.0,X,12.9,10.1,11.7,274,N/A
+Ford,F-150 4X4 FFV,3.3,6.0,X,12.6,10.7,11.8,277,N/A
+Ford,F-150 4X4 FFV,3.3,6.0,E,17.3,13.1,15.4,256,N/A
+Ford,F-150 4X4,3.5,6.0,X,13.5,10.3,12.1,284,N/A
+Ford,F-150 4X4 (Without Stop-Start),3.5,6.0,X,14.6,11,13,304,N/A
+Ford,F-150 4X4 FFV,5,8.0,X,14.7,10.8,12.9,304,N/A
+Ford,F-150 4X4 FFV,5,8.0,E,21.2,14.2,18.1,301,N/A
+Ford,F-150 4X4 FFV (Without Stop-Start),5,8.0,X,15.1,10.7,13.1,308,N/A
+Ford,F-150 4X4 FFV (Without Stop-Start),5,8.0,E,20.7,14.2,17.8,295,N/A
+Ford,F-150 Raptor 4X4,3.5,6.0,X,15.8,13.2,14.6,344,N/A
+Ford,F-150 Raptor 4X4 (Without Stop-Start),3.5,6.0,X,16.8,13.2,15.2,357,N/A
+Ford,F-150 Raptor 37 4X4,3.5,6.0,X,16,14.4,15.3,359,N/A
+Ford,F-150 Raptor 37 4X4 (Without Stop-Start),3.5,6.0,X,16.6,14.8,15.8,370,N/A
+Ford,F-150 Tremor 4X4,3.5,6.0,X,14.3,11.8,13.2,310,N/A
+Ford,F-150 Tremor 4X4 (Without Stop-Start),3.5,6.0,X,14.7,11.7,13.3,313,N/A
+Ford,F-150 Hybrid,3.5,6.0,X,9.8,9.7,9.7,228,N/A
+Ford,F-150 Hybrid 4X4,3.5,6.0,X,10.3,10,10.2,238,N/A
+Ford,GT,3.5,6.0,Z,19.9,12.8,16.7,395,N/A
+Ford,Maverick AWD,2,4.0,X,10.7,8.1,9.6,226,N/A
+Ford,Maverick Hybrid,2.5,4.0,X,5.6,7.1,6.3,147,N/A
+Ford,Mustang,2.3,4.0,X,11,7.4,9.3,220,N/A
+Ford,Mustang,2.3,4.0,X,11.4,7.9,9.8,231,N/A
+Ford,Mustang (High Performance),2.3,4.0,X,11.7,8.6,10.3,242,N/A
+Ford,Mustang,2.3,4.0,X,11.5,8.2,10,236,N/A
+Ford,Mustang (High Performance),2.3,4.0,X,11.9,8.7,10.5,246,N/A
+Ford,Mustang,5,8.0,X,15.2,9.7,12.7,298,N/A
+Ford,Mustang,5,8.0,X,16.1,10.1,13.4,314,N/A
+Ford,Mustang Convertible,2.3,4.0,X,11.7,8.1,10.1,237,N/A
+Ford,Mustang Convertible,2.3,4.0,X,12,8.5,10.4,244,N/A
+Ford,Mustang Convertible (High Performance),2.3,4.0,X,12.1,8.9,10.7,252,N/A
+Ford,Mustang Convertible,2.3,4.0,X,11.8,8.6,10.4,244,N/A
+Ford,Mustang Convertible (High Performance),2.3,4.0,X,12.3,9.2,10.9,256,N/A
+Ford,Mustang Convertible,5,8.0,X,15.8,10.4,13.4,314,N/A
+Ford,Mustang Mach 1,5,8.0,X,15.2,10.1,12.9,302,N/A
+Ford,Mustang Mach 1,5,8.0,X,17.1,11.2,14.5,339,N/A
+Ford,Ranger 4WD,2.3,4.0,X,11.9,9.7,10.9,256,N/A
+Ford,Ranger 4WD (Without Stop-Start),2.3,4.0,X,12.4,9.7,11.2,262,N/A
+Ford,Ranger 4WD Tremor,2.3,4.0,X,12.4,12.3,12.4,291,N/A
+Ford,Shelby GT500 Mustang,5.2,8.0,Z,19.9,12.7,16.7,392,N/A
+Ford,Transit Connect Van,2,4.0,X,9.8,8.9,9.4,221,N/A
+Ford,Transit Connect Van FFV,2,4.0,X,9.8,8.9,9.4,221,N/A
+Ford,Transit Connect Van FFV,2,4.0,E,13.3,11.9,12.7,211,N/A
+Ford,Transit Connect Van,2.5,4.0,X,12,8.9,10.6,249,N/A
+Ford,Transit Connect Wagon LWB,2,4.0,X,10,8.3,9.2,216,N/A
+Ford,Transit Connect Wagon LWB FFV,2,4.0,X,10,8.3,9.2,216,N/A
+Ford,Transit Connect Wagon LWB FFV,2,4.0,E,14.7,11.3,13.2,219,N/A
+Ford,Transit Connect Wagon LWB,2.5,4.0,X,12.1,9,10.6,249,N/A
+Genesis,G70 AWD,3.3,6.0,Z,13.5,9.1,11.5,273,N/A
+Genesis,G80 AWD,2.5,4.0,Z,10.8,7.9,9.5,225,N/A
+Genesis,G80 AWD,3.5,6.0,Z,14.8,9.9,12.6,298,N/A
+Genesis,G90 AWD,5,8.0,Z,15,10.1,12.8,303,N/A
+Genesis,GV70 AWD,2.5,4.0,Z,10.7,8.4,9.7,229,N/A
+Genesis,GV70 AWD,3.5,6.0,Z,12.9,10,11.6,275,N/A
+Genesis,GV80 AWD,2.5,4.0,Z,11.3,9.5,10.5,248,N/A
+Genesis,GV80 AWD,3.5,6.0,Z,12.9,10.4,11.8,279,N/A
+GMC,Acadia,2,4.0,X,10.6,8,9.4,221,N/A
+GMC,Acadia,3.6,6.0,X,12.3,8.8,10.7,252,N/A
+GMC,Acadia AWD,2,4.0,X,10.8,8.7,9.9,232,N/A
+GMC,Acadia AWD,3.6,6.0,X,12.6,9.2,11,259,N/A
+GMC,Canyon,2.5,4.0,X,12.2,9.4,10.9,257,N/A
+GMC,Canyon,2.8,4.0,D,11.8,7.9,10.1,270,N/A
+GMC,Canyon,3.6,6.0,X,12.9,9.3,11.3,263,N/A
+GMC,Canyon 4WD,2.5,4.0,X,12.6,9.9,11.4,267,N/A
+GMC,Canyon 4WD,2.8,4.0,D,12.2,8.4,10.5,283,N/A
+GMC,Canyon 4WD,3.6,6.0,X,14,9.9,12.1,283,N/A
+GMC,Sierra,2.7,4.0,X,12.5,10.6,11.6,274,N/A
+GMC,Sierra,3,6.0,D,10.2,7.8,9.1,245,N/A
+GMC,Sierra FFV,5.3,8.0,X,16.2,12.3,14.5,341,N/A
+GMC,Sierra FFV,5.3,8.0,E,21.5,16,19.1,321,N/A
+GMC,Sierra,5.3,8.0,X,15.1,11.3,13.4,314,N/A
+GMC,Sierra,5.3,8.0,X,14.4,11.3,13,305,N/A
+GMC,Sierra 4WD,2.7,4.0,X,13.9,12,13.1,306,N/A
+GMC,Sierra 4WD Mud Terrain Tire,2.7,4.0,X,14.7,13.1,14,328,N/A
+GMC,Sierra 4WD,3,6.0,D,10.5,9.1,9.9,265,N/A
+GMC,Sierra 4WD Mud Terrain Tire,3,6.0,D,11.8,10.3,11.2,298,N/A
+GMC,Sierra 4WD FFV,5.3,8.0,X,16.5,12.8,14.8,347,N/A
+GMC,Sierra 4WD FFV,5.3,8.0,E,22,16.4,19.5,326,N/A
+GMC,Sierra 4WD Mud Terrain Tire FFV,5.3,8.0,X,17.4,14.7,16.2,380,N/A
+GMC,Sierra 4WD Mud Terrain Tire FFV,5.3,8.0,E,23.1,19.6,21.5,358,N/A
+GMC,Sierra 4WD,5.3,8.0,X,15.6,11.9,13.9,327,N/A
+GMC,Sierra 4WD Mud Terrain Tire,5.3,8.0,X,16.9,13.3,15.3,359,N/A
+GMC,Sierra 4WD,5.3,8.0,X,14.9,12,13.6,318,N/A
+GMC,Sierra 4WD (No DFM),5.3,8.0,X,16.8,12.4,14.8,347,N/A
+GMC,Sierra 4WD (With Sport Mode),5.3,8.0,X,15.4,12.3,14,329,N/A
+GMC,Sierra 4WD (No Stop-Start),5.3,8.0,X,16.1,12.4,14.4,338,N/A
+GMC,Sierra 4WD Mud Terrain Tire,5.3,8.0,X,16.6,14,15.4,360,N/A
+GMC,Sierra 4WD Mud Terrain Tire (No DFM),5.3,8.0,X,18.1,13.8,16.2,381,N/A
+GMC,Sierra 4WD,6.2,8.0,Z,15.7,11.9,14,329,N/A
+GMC,Sierra 4WD (No Stop-Start),6.2,8.0,Z,16.6,12.3,14.7,345,N/A
+GMC,Sierra 4WD Mud Terrain Tire,6.2,8.0,Z,16.5,13.2,15,352,N/A
+GMC,Sierra 4WD Mud Terrain Tire (No Stop-Start),6.2,8.0,Z,18.2,14.2,16.4,385,N/A
+GMC,Terrain,1.5,4.0,X,9.2,7.8,8.6,202,N/A
+GMC,Terrain AWD,1.5,4.0,X,9.6,8.3,9,212,N/A
+GMC,Yukon,3,6.0,D,11.2,8.7,10.1,272,N/A
+GMC,Yukon,5.3,8.0,X,15.8,11.8,14,327,N/A
+GMC,Yukon (No Stop-Start),5.3,8.0,X,16,11.9,14.1,332,N/A
+GMC,Yukon 4WD,3,6.0,D,11.7,9,10.5,281,N/A
+GMC,Yukon 4WD,5.3,8.0,X,15.8,11.8,14,327,N/A
+GMC,Yukon 4WD (No Stop-Start),5.3,8.0,X,17,12.7,15.1,354,N/A
+GMC,Yukon 4WD,6.2,8.0,Z,16.3,12.7,14.7,345,N/A
+GMC,Yukon 4WD (No Stop-Start),6.2,8.0,Z,17,12.7,15.1,353,N/A
+GMC,Yukon XL,3,6.0,D,11.2,8.7,10.1,272,N/A
+GMC,Yukon XL,5.3,8.0,X,15.8,11.8,14,327,N/A
+GMC,Yukon XL (No Stop-Start),5.3,8.0,X,16,11.9,14.1,332,N/A
+GMC,Yukon XL 4WD,3,6.0,D,11.7,9,10.5,281,N/A
+GMC,Yukon XL 4WD,5.3,8.0,X,15.9,12.4,14.3,336,N/A
+GMC,Yukon XL 4WD (No Stop-Start),5.3,8.0,X,17,12.7,15.1,354,N/A
+GMC,Yukon XL 4WD,6.2,8.0,Z,16.3,12.7,14.7,345,N/A
+GMC,Yukon XL 4WD (No Stop-Start),6.2,8.0,Z,17,12.7,15.1,353,N/A
+Honda,Accord,1.5,4.0,X,7.8,6.5,7.2,168,N/A
+Honda,Accord Sport/Touring,1.5,4.0,X,8.1,6.8,7.5,176,N/A
+Honda,Accord Sport/Touring,2,4.0,X,10.4,7.4,9.1,211,N/A
+Honda,Accord Hybrid,2,4.0,X,5,5,5,117,N/A
+Honda,Accord Hybrid Sport/Touring,2,4.0,X,5.3,5.7,5.5,129,N/A
+Honda,Civic Hatchback,1.5,4.0,X,7.7,6.3,7.1,166,N/A
+Honda,Civic Hatchback,1.5,4.0,X,8.5,6.3,7.5,175,N/A
+Honda,Civic Hatchback,2,4.0,X,8,6.2,7.2,167,N/A
+Honda,Civic Hatchback,2,4.0,X,9.1,6.6,8,186,N/A
+Honda,Civic Sedan,1.5,4.0,X,7.6,6.1,6.9,162,N/A
+Honda,Civic Sedan,2,4.0,X,7.7,6,6.9,162,N/A
+Honda,Civic Sedan,2,4.0,X,7.8,6.3,7.1,165,N/A
+Honda,Civic Sedan Si,1.5,4.0,Z,8.7,6.4,7.7,180,N/A
+Honda,CR-V,1.5,4.0,X,8.3,7,7.7,180,N/A
+Honda,CR-V AWD,1.5,4.0,X,8.7,7.4,8.1,189,N/A
+Honda,HR-V,1.8,4.0,X,8.4,7,7.8,181,N/A
+Honda,HR-V AWD,1.8,4.0,X,8.8,7.5,8.2,193,N/A
+Honda,HR-V AWD,1.8,4.0,X,9.1,7.7,8.5,200,N/A
+Honda,Odyssey,3.5,6.0,X,12.2,8.5,10.6,248,N/A
+Honda,Passport AWD,3.5,6.0,X,12.5,9.8,11.3,265,N/A
+Honda,Pilot AWD,3.5,6.0,X,12.4,9.3,11,256,N/A
+Honda,Pilot AWD TrailSport,3.5,6.0,X,12.3,9.5,11.1,260,N/A
+Honda,Ridgeline AWD,3.5,6.0,X,12.8,9.9,11.5,271,N/A
+Hyundai,Elantra,1.6,4.0,X,8.4,6.6,7.6,179,N/A
+Hyundai,Elantra,2,4.0,X,7.6,5.7,6.7,158,N/A
+Hyundai,Elantra (ISG),2,4.0,X,7.1,5.5,6.4,151,N/A
+Hyundai,Elantra,2,4.0,X,9.1,6.3,7.8,185,N/A
+Hyundai,Elantra N,2,4.0,Z,12.1,7.9,10.2,241,N/A
+Hyundai,Elantra N,2,4.0,Z,10.9,7.7,9.4,223,N/A
+Hyundai,Elantra Hybrid Blue,1.6,4.0,X,4.5,4.2,4.4,103,N/A
+Hyundai,IONIQ,1.6,4.0,X,4.3,4.1,4.2,99,N/A
+Hyundai,IONIQ Blue,1.6,4.0,X,4,3.9,4,94,N/A
+Hyundai,Kona,2,4.0,X,8,6.6,7.4,174,N/A
+Hyundai,Kona N,2,4.0,Z,11.8,8.7,10.4,246,N/A
+Hyundai,Kona AWD,1.6,4.0,X,8.8,7.4,8.2,193,N/A
+Hyundai,Kona AWD,2,4.0,X,8.5,7.2,7.9,187,N/A
+Hyundai,Palisade AWD,3.8,6.0,X,12.3,9.6,11.1,265,N/A
+Hyundai,Santa Cruz AWD,2.5,4.0,X,12.1,8.6,10.6,250,N/A
+Hyundai,Santa Fe AWD,2.5,4.0,X,11,8.5,9.9,233,N/A
+Hyundai,Santa Fe AWD,2.5,4.0,X,10.6,9.3,10,235,N/A
+Hyundai,Santa Fe Hybrid,1.6,4.0,X,7.1,7.9,7.4,176,N/A
+Hyundai,Sonata,1.6,4.0,X,8.8,6.4,7.7,183,N/A
+Hyundai,Sonata,2.5,4.0,X,10.1,7.2,8.8,208,N/A
+Hyundai,Sonata,2.5,4.0,X,8.8,6.4,7.7,182,N/A
+Hyundai,Sonata Hybrid,2,4.0,X,5.3,4.6,5,117,N/A
+Hyundai,Tucson,2.5,4.0,X,9.1,7.1,8.2,194,N/A
+Hyundai,Tucson AWD,2.5,4.0,X,9.9,8,9,214,N/A
+Hyundai,Tucson Hybrid,1.6,4.0,X,6.3,6.6,6.4,152,N/A
+Hyundai,Veloster N,2,4.0,Z,12,8.6,10.5,248,N/A
+Hyundai,Veloster N,2,4.0,Z,10.6,8.3,9.5,226,N/A
+Hyundai,Venue,1.6,4.0,X,7.9,6.9,7.5,176,N/A
+Hyundai,Venue,1.6,4.0,X,8.6,6.8,7.8,184,N/A
+Infiniti,Q50 AWD,3,6.0,Z,12.5,8.7,10.8,254,N/A
+Infiniti,Q50 AWD Red Sport,3,6.0,Z,12.5,9.3,11.1,261,N/A
+Infiniti,Q60 AWD,3,6.0,Z,12.3,8.7,10.7,252,N/A
+Infiniti,Q60 AWD Red Sport,3,6.0,Z,12.5,9.2,11,259,N/A
+Infiniti,QX50 AWD,2,4.0,Z,10.8,8.3,9.7,228,N/A
+Infiniti,QX55 AWD,2,4.0,Z,10.5,8.3,9.5,223,N/A
+Infiniti,QX60 AWD,3.5,6.0,Z,11.9,9.5,10.8,253,N/A
+Infiniti,QX80 4WD,5.6,8.0,Z,17.5,12.2,15.1,355,N/A
+Jaguar,E-PACE P250,2,4.0,Z,11.5,9.2,10.4,247,N/A
+Jaguar,E-PACE P300,2,4.0,Z,11.2,9.2,10.3,245,N/A
+Jaguar,F-TYPE P450 Convertible,5,8.0,Z,14.1,9.7,12.1,286,N/A
+Jaguar,F-TYPE P450 Convertible AWD,5,8.0,Z,15.2,9.8,12.7,299,N/A
+Jaguar,F-TYPE P450 Coupe,5,8.0,Z,14.1,9.7,12.1,286,N/A
+Jaguar,F-TYPE P450 Coupe AWD,5,8.0,Z,15.2,9.8,12.7,299,N/A
+Jaguar,F-TYPE R Convertible AWD,5,8.0,Z,15.2,9.8,12.7,299,N/A
+Jaguar,F-TYPE R Coupe AWD,5,8.0,Z,15.2,9.8,12.7,299,N/A
+Jeep,Cherokee,2,4.0,X,10.4,7.6,9.1,214,N/A
+Jeep,Cherokee,2.4,4.0,X,10.8,7.5,9.3,219,N/A
+Jeep,Cherokee,3.2,6.0,X,11.9,8.2,10.2,240,N/A
+Jeep,Cherokee 4X4 Active Drive I,2,4.0,X,11.2,8,9.8,229,N/A
+Jeep,Cherokee 4X4 Active Drive I,2.4,4.0,X,11.2,8,9.8,230,N/A
+Jeep,Cherokee 4X4 Active Drive I,3.2,6.0,X,12.2,8.6,10.6,249,N/A
+Jeep,Cherokee 4X4 Active Drive Lock,3.2,6.0,X,12.9,9.7,11.5,268,N/A
+Jeep,Compass,2.4,4.0,X,10.6,7.6,9.3,218,N/A
+Jeep,Compass 4X4,2.4,4.0,X,10.8,7.8,9.5,222,N/A
+Jeep,Gladiator 4X4 EcoDiesel,3,6.0,D,10.8,8.5,9.8,263,N/A
+Jeep,Gladiator 4X4 Rubicon EcoDiesel,3,6.0,D,11,8.7,10,271,N/A
+Jeep,Gladiator 4X4,3.6,6.0,X,13.7,10.7,12.3,290,N/A
+Jeep,Gladiator 4X4,3.6,6.0,X,14.3,10.4,12.6,296,N/A
+Jeep,Grand Cherokee 4X4,3.6,6.0,X,12.3,9.2,10.9,256,N/A
+Jeep,Grand Cherokee 4X4,5.7,8.0,X,16.7,10.9,14.1,331,N/A
+Jeep,Grand Cherokee L 4X4,3.6,6.0,X,13,9.4,11.3,266,N/A
+Jeep,Grand Cherokee L 4X4,5.7,8.0,X,16.7,10.9,14.1,331,N/A
+Jeep,Grand Cherokee WK 4X4,3.6,6.0,X,12.7,9.6,11.3,265,N/A
+Jeep,Grand Wagoneer 4X4,6.4,8.0,Z,18.6,12.8,16,374,N/A
+Jeep,Renegade,1.3,4.0,X,9.8,7.4,8.7,204,N/A
+Jeep,Renegade 4X4,1.3,4.0,X,10.1,8.1,9.2,222,N/A
+Jeep,Renegade 4X4 Trailhawk,1.3,4.0,X,10.8,8.7,9.9,231,N/A
+Jeep,Wagoneer 4X4,5.7,8.0,X,15.6,11.7,13.8,323,N/A
+Jeep,Wrangler JL 4X4,2,4.0,X,10.7,9.8,10.3,241,N/A
+Jeep,Wrangler JL 4X4,3.6,6.0,X,12.8,10.4,11.8,274,N/A
+Jeep,Wrangler JL 4X4 eTorque,3.6,6.0,X,12,9.8,11,258,N/A
+Jeep,Wrangler JL 4X4,3.6,6.0,X,13.7,9.6,11.8,277,N/A
+Jeep,Wrangler JL Unlimited 4X4,2,4.0,X,11.5,9.9,10.8,251,N/A
+Jeep,Wrangler JL Unlimited 4X4 EcoDiesel,3,6.0,D,10.6,8.1,9.5,255,N/A
+Jeep,Wrangler JL Unlimited 4X4 Rubicon EcoDiesel,3,6.0,D,11.2,9,10.2,275,N/A
+Jeep,Wrangler JL Unlimited 4X4,3.6,6.0,X,12.9,10.2,11.7,275,N/A
+Jeep,Wrangler JL Unlimited 4X4 eTorque,3.6,6.0,X,12.3,9.9,11.2,262,N/A
+Jeep,Wrangler JL Unlimited 4X4,3.6,6.0,X,13.8,10.1,12.2,285,N/A
+Jeep,Wrangler JL Unlimited 4X4,6.4,8.0,Z,18.5,14.1,16.5,387,N/A
+Kia,Carnival,3.5,6.0,X,12,8.9,10.6,252,N/A
+Kia,Forte,1.6,4.0,X,8.7,6.6,7.8,184,N/A
+Kia,Forte,2,4.0,X,7.9,5.9,7,165,N/A
+Kia,Forte,2,4.0,X,8.8,6.1,7.6,178,N/A
+Kia,Forte 5,1.6,4.0,X,8.9,6.9,8,190,N/A
+Kia,Forte 5,2,4.0,X,8,6,7.1,169,N/A
+Kia,K5,2.5,4.0,X,9.9,7.3,8.7,207,N/A
+Kia,K5 AWD,1.6,4.0,X,9.2,7,8.2,195,N/A
+Kia,Niro,1.6,4.0,X,4.4,4.9,4.6,110,N/A
+Kia,Niro FE,1.6,4.0,X,4.4,4.9,4.6,110,N/A
+Kia,Niro Touring,1.6,4.0,X,5,5.6,5.3,124,N/A
+Kia,Rio,1.6,4.0,X,7.2,6,6.7,159,N/A
+Kia,Rio,1.6,4.0,X,7.7,6.1,7,166,N/A
+Kia,Seltos,2,4.0,X,8.2,7.1,7.7,182,N/A
+Kia,Seltos AWD,1.6,4.0,X,9.4,7.9,8.7,205,N/A
+Kia,Seltos AWD,2,4.0,X,8.8,7.6,8.2,195,N/A
+Kia,Sorento AWD,2.5,4.0,X,10.9,8.7,9.9,234,N/A
+Kia,Sorento AWD,2.5,4.0,X,10.1,9.2,9.7,227,N/A
+Kia,Sorento Hybrid AWD,1.6,4.0,X,6.4,7,6.6,157,N/A
+Kia,Soul,2,4.0,X,8.5,7,7.9,187,N/A
+Kia,Sportage,2.4,4.0,X,10.1,7.6,9,214,N/A
+Kia,Sportage AWD,2,4.0,X,12.1,9.6,11,261,N/A
+Kia,Sportage AWD,2.4,4.0,X,10.8,9.1,10,238,N/A
+Kia,Stinger AWD,3.3,6.0,Z,13.7,9.6,11.9,280,N/A
+Kia,Telluride AWD,3.8,6.0,X,12.7,9.7,11.3,266,N/A
+Lamborghini,Aventador Countach,6.5,12.0,Z,26.5,14.6,21.2,489,N/A
+Lamborghini,Aventador Ultimae Coupe,6.5,12.0,Z,26.8,15.1,21.5,498,N/A
+Lamborghini,Aventador Ultimae Roadster,6.5,12.0,Z,26.8,15.1,21.5,498,N/A
+Lamborghini,Huracan evo Coupe,5.2,10.0,Z,18,12.9,15.7,371,N/A
+Lamborghini,Huracan evo Coupe AWD,5.2,10.0,Z,18,12.9,15.7,370,N/A
+Lamborghini,Huracan evo Spyder,5.2,10.0,Z,18,12.9,15.7,371,N/A
+Lamborghini,Huracan evo Spyder AWD,5.2,10.0,Z,18,12.9,15.7,370,N/A
+Lamborghini,Urus,4,8.0,Z,19.2,14.1,16.9,384,N/A
+Land Rover,Defender 90 P300,2,4.0,Z,13.2,11.3,12.3,289,N/A
+Land Rover,Defender 90 P400,3,6.0,Z,13.5,10.8,12.3,287,N/A
+Land Rover,Defender 90 5.0L V8,5,8.0,Z,15.8,12.4,14.3,339,N/A
+Land Rover,Defender 110 P300,2,4.0,Z,14.2,11.7,13,306,N/A
+Land Rover,Defender 110 P400,3,6.0,Z,13.5,10.8,12.3,287,N/A
+Land Rover,Defender 110 5.0L V8,5,8.0,Z,16.4,12.7,14.7,350,N/A
+Land Rover,Discovery P300,2,4.0,Z,12.2,10.6,11.5,271,N/A
+Land Rover,Discovery P360,3,6.0,Z,12.8,9.8,11.4,270,N/A
+Land Rover,Range Rover P360,3,6.0,Z,13.3,10.2,11.9,279,N/A
+Land Rover,Range Rover P400,3,6.0,Z,13.3,10.2,11.9,279,N/A
+Land Rover,Range Rover P525,5,8.0,Z,14.4,11.3,13,305,N/A
+Land Rover,Range Rover P525 LWB,5,8.0,Z,14.4,11.3,13,305,N/A
+Land Rover,Range Rover SVAutobiography,5,8.0,Z,17.1,12.6,15.1,354,N/A
+Land Rover,Range Rover SVAutobiography LWB,5,8.0,Z,17.9,12.7,15.5,365,N/A
+Land Rover,Range Rover Sport P360,3,6.0,Z,12.7,9.9,11.4,269,N/A
+Land Rover,Range Rover Sport HST P400,3,6.0,Z,12.7,9.9,11.4,269,N/A
+Land Rover,Range Rover Sport P525,5,8.0,Z,14.1,10.7,12.6,294,N/A
+Land Rover,Range Rover Sport P575 SVR,5,8.0,Z,16.2,12,14.3,336,N/A
+Lexus,ES 250 AWD,2.5,4.0,X,9.5,7,8.4,195,N/A
+Lexus,ES 300h,2.5,4.0,X,5.5,5.2,5.3,124,N/A
+Lexus,ES 350,3.5,6.0,X,10.7,7.3,9.2,214,N/A
+Lexus,ES 350 F SPORT,3.5,6.0,X,10.9,7.5,9.4,219,N/A
+Lexus,GX 460,4.6,8.0,Z,16.2,12.3,14.5,337,N/A
+Lexus,IS 300,2,4.0,Z,11,7.6,9.5,221,N/A
+Lexus,IS 300 AWD,3.5,6.0,Z,12.2,9,10.8,253,N/A
+Lexus,IS 350 AWD,3.5,6.0,Z,12.2,9,10.8,253,N/A
+Lexus,IS 500,5,8.0,Z,14.1,9.3,11.9,280,N/A
+Lexus,LC 500,5,8.0,Z,15.1,9.6,12.6,294,N/A
+Lexus,LC 500 Convertible,5,8.0,Z,16,9.5,13,304,N/A
+Lexus,LC 500h,3.5,6.0,Z,9,7.1,8.1,189,N/A
+Lexus,LS 500 AWD,3.4,6.0,Z,13.8,8.7,11.2,270,N/A
+Lexus,LS 500h AWD,3.5,6.0,Z,10.1,8.1,9.2,216,N/A
+Lexus,LX 600,3.4,6.0,Z,14.2,10.8,12.7,298,N/A
+Lexus,NX 250 AWD,2.5,4.0,X,9.4,7.4,8.4,198,N/A
+Lexus,NX 350 AWD,2.4,4.0,Z,10.5,8.3,9.5,221,N/A
+Lexus,NX 350 AWD F SPORT,2.4,4.0,Z,10.5,8.4,9.5,222,N/A
+Lexus,NX 350h AWD,2.5,4.0,Z,5.7,6.4,6,140,N/A
+Lexus,RC 300 AWD,3.5,6.0,Z,12.2,9,10.8,253,N/A
+Lexus,RC 350 AWD,3.5,6.0,Z,12.2,9,10.8,253,N/A
+Lexus,RC F,5,8.0,Z,14.4,9.6,12.2,285,N/A
+Lexus,RX 350 AWD,3.5,6.0,X,12.2,9,10.8,252,N/A
+Lexus,RX 350 L AWD,3.5,6.0,X,13.1,9.4,11.1,268,N/A
+Lexus,RX 450h AWD,3.5,6.0,Z,7.5,8.4,7.9,185,N/A
+Lexus,RX 450h L AWD,3.5,6.0,Z,8.1,8.4,8.1,190,N/A
+Lexus,UX 200,2,4.0,X,8,6.3,7.2,168,N/A
+Lexus,UX 250h AWD,2,4.0,X,5.7,6.2,6,140,N/A
+Lincoln,Aviator AWD,3,6.0,X,13.7,9.7,11.9,280,N/A
+Lincoln,Corsair AWD,2,4.0,X,11.1,8.1,9.8,229,N/A
+Lincoln,Corsair AWD,2.3,4.0,X,11.2,8.3,9.9,232,N/A
+Lincoln,Nautilus AWD,2,4.0,X,11.8,9.4,10.7,252,N/A
+Lincoln,Nautilus AWD,2,4.0,X,11.8,9.4,10.7,251,N/A
+Lincoln,Nautilus AWD,2.7,6.0,X,12.6,9.3,11.2,262,N/A
+Lincoln,Navigator 4X4,3.5,6.0,X,15.2,10.8,13.2,311,N/A
+Maserati,Ghibli GT,3,6.0,Z,13.4,9.4,11.6,271,N/A
+Maserati,Ghibli Modena,3,6.0,Z,13.4,9.4,11.6,271,N/A
+Maserati,Ghibli Modena AWD,3,6.0,Z,14.8,9.8,12.6,293,N/A
+Maserati,Ghibli Trofeo,3.8,8.0,Z,17.4,11.9,14.9,348,N/A
+Maserati,Levante GT,3,6.0,Z,15.1,10.9,13.2,308,N/A
+Maserati,Levante Modena,3,6.0,Z,15.1,10.9,13.2,308,N/A
+Maserati,Levante Modena V8,3.8,8.0,Z,17.4,12,15,349,N/A
+Maserati,Levante Trofeo,3.8,8.0,Z,17.4,12,15,349,N/A
+Maserati,MC20,3,6.0,Z,15.4,9.5,12.8,295,N/A
+Maserati,Quattroporte GT,3,6.0,Z,14.4,9.3,12.1,281,N/A
+Maserati,Quattroporte Modena,3,6.0,Z,14.4,9.3,12.1,281,N/A
+Maserati,Quattroporte Modena AWD,3,6.0,Z,14.8,9.8,12.6,293,N/A
+Maserati,Quattroporte Trofeo,3.8,8.0,Z,17.4,11.9,14.9,348,N/A
+Mazda,CX-3,2,4.0,X,8.3,6.9,7.7,179,N/A
+Mazda,CX-3 (SIL),2,4.0,X,8.8,7,8,186,N/A
+Mazda,CX-3 4WD,2,4.0,X,8.6,7.4,8.1,189,N/A
+Mazda,CX-30 4WD,2,4.0,X,9.4,7.7,8.6,202,N/A
+Mazda,CX-30 4WD,2.5,4.0,X,9.9,7.7,8.9,208,N/A
+Mazda,CX-30 Turbo 4WD,2.5,4.0,X,10.5,7.9,9.3,220,N/A
+Mazda,CX-5 4WD,2.5,4.0,X,10.2,8.2,9.3,216,N/A
+Mazda,CX-5 4WD (Cylinder Deactivation),2.5,4.0,X,9.9,7.9,9,209,N/A
+Mazda,CX-5 Turbo 4WD,2.5,4.0,X,10.8,8.7,9.8,230,N/A
+Mazda,CX-9 4WD,2.5,4.0,X,11.6,9,10.4,243,N/A
+Mazda,Mazda3 4-Door,2,4.0,X,8.4,6.6,7.6,178,N/A
+Mazda,Mazda3 4-Door (SIL),2,4.0,X,8.7,6.4,7.7,180,N/A
+Mazda,Mazda3 4-Door,2.5,4.0,X,8.9,6.5,7.8,183,N/A
+Mazda,Mazda3 4-Door 4WD,2.5,4.0,X,9.5,7.2,8.5,199,N/A
+Mazda,Mazda3 4-Door Turbo 4WD,2.5,4.0,X,10.1,7.3,8.8,207,N/A
+Mazda,Mazda3 5-Door,2,4.0,X,8.6,6.7,7.7,181,N/A
+Mazda,Mazda3 5-Door (SIL),2,4.0,X,8.7,6.6,7.8,181,N/A
+Mazda,Mazda3 5-Door,2.5,4.0,X,9.1,6.8,8.1,190,N/A
+Mazda,Mazda3 5-Door (SIL),2.5,4.0,X,9.6,7.1,8.4,198,N/A
+Mazda,Mazda3 5-Door 4WD,2.5,4.0,X,9.5,7.4,8.6,200,N/A
+Mazda,Mazda3 5-Door Turbo 4WD,2.5,4.0,X,10.1,7.5,8.9,209,N/A
+Mazda,MX-5,2,4.0,Z,9,6.6,7.9,186,N/A
+Mazda,MX-5 (SIL),2,4.0,Z,9,7,8.1,189,N/A
+Mercedes-Benz,A 220 4MATIC Sedan,2,4.0,Z,9.5,6.8,8.3,194,N/A
+Mercedes-Benz,A 250 4MATIC Hatch,2,4.0,Z,10,7,8.7,202,N/A
+Mercedes-Benz,AMG A 35 4MATIC Sedan,2,4.0,Z,10.8,7.9,9.5,221,N/A
+Mercedes-Benz,AMG A 35 4MATIC Hatch,2,4.0,Z,10.8,7.8,9.4,221,N/A
+Mercedes-Benz,AMG C 43 4MATIC Cabriolet,3,6.0,Z,12.7,8.7,10.9,256,N/A
+Mercedes-Benz,AMG C 43 4MATIC Coupe,3,6.0,Z,12.6,8.5,10.8,252,N/A
+Mercedes-Benz,AMG CLA 35 4MATIC Coupe,2,4.0,Z,11,8.2,9.7,227,N/A
+Mercedes-Benz,AMG CLA 45 4MATIC Coupe,2,4.0,Z,12,8.5,10.4,243,N/A
+Mercedes-Benz,AMG CLS 53 4MATIC+ Coupe,3,6.0,Z,11.6,8.8,10.3,241,N/A
+Mercedes-Benz,AMG E 53 4MATIC+ Sedan,3,6.0,Z,11.3,8.3,9.9,232,N/A
+Mercedes-Benz,AMG E 53 4MATIC+ Cabriolet,3,6.0,Z,12,8.9,10.6,247,N/A
+Mercedes-Benz,AMG E 53 4MATIC+ Coupe,3,6.0,Z,11.7,8.4,10.2,239,N/A
+Mercedes-Benz,AMG GLA 35 4MATIC SUV,2,4.0,Z,11,8.4,9.8,230,N/A
+Mercedes-Benz,AMG GLA 45 4MATIC SUV,2,4.0,Z,12.3,9.6,11.1,260,N/A
+Mercedes-Benz,AMG GLB 35 4MATIC SUV,2,4.0,Z,12.7,9.4,11.2,262,N/A
+Mercedes-Benz,AMG GLC 43 4MATIC SUV,3,6.0,Z,12.9,9.3,11.3,264,N/A
+Mercedes-Benz,AMG GLC 43 4MATIC Coupe,3,6.0,Z,14,10.1,12.3,287,N/A
+Mercedes-Benz,AMG GLE 53 4MATIC+ SUV,3,6.0,Z,13.4,10.6,12.1,283,N/A
+Mercedes-Benz,AMG GLE 53 4MATIC+ Coupe,3,6.0,Z,13.6,11.1,12.5,292,N/A
+Mercedes-Benz,AMG GT 53 4MATIC+ Coupe,3,6.0,Z,12.3,9.4,11,258,N/A
+Mercedes-Benz,C 300 4MATIC Cabriolet,2,4.0,Z,11,8,9.6,224,N/A
+Mercedes-Benz,C 300 4MATIC Coupe,2,4.0,Z,10.7,7.5,9.3,217,N/A
+Mercedes-Benz,CLA 250 4MATIC Coupe,2,4.0,Z,9.8,7,8.6,200,N/A
+Mercedes-Benz,CLS 450 4MATIC Coupe,3,6.0,Z,11.1,8.2,9.8,229,N/A
+Mercedes-Benz,E 350 4MATIC Sedan,2,4.0,Z,11.2,8.2,9.8,229,N/A
+Mercedes-Benz,E 450 4MATIC Sedan,3,6.0,Z,10.5,7.9,9.3,218,N/A
+Mercedes-Benz,E 450 4MATIC Cabriolet,3,6.0,Z,11.2,8.4,9.9,233,N/A
+Mercedes-Benz,E 450 4MATIC Coupe,3,6.0,Z,11,8,9.6,225,N/A
+Mercedes-Benz,E 450 4MATIC All-Terrain Wagon,3,6.0,Z,11,8.3,9.8,229,N/A
+Mercedes-Benz,GLA 250 4MATIC SUV,2,4.0,Z,10.3,7.3,9,210,N/A
+Mercedes-Benz,GLB 250 4MATIC SUV,2,4.0,Z,10.9,7.9,9.5,224,N/A
+Mercedes-Benz,GLC 300 4MATIC SUV,2,4.0,Z,11.5,9.1,10.4,242,N/A
+Mercedes-Benz,GLC 300 4MATIC Coupe,2,4.0,Z,11.5,8.5,10.1,237,N/A
+Mercedes-Benz,GLE 350 4MATIC SUV,2,4.0,Z,12.1,8.9,10.7,250,N/A
+Mercedes-Benz,GLE 450 4MATIC SUV,3,6.0,Z,11.4,9.3,10.4,244,N/A
+Mercedes-Benz,GLE 450 4MATIC Coupe,3,6.0,Z,11.7,9.2,10.5,247,N/A
+Mercedes-Benz,GLS 450 4MATIC SUV,3,6.0,Z,12.8,10,11.5,269,N/A
+Mercedes-Benz,Maybach S 580 4MATIC Sedan,4,8.0,Z,15.2,9.9,12.9,301,N/A
+Mercedes-Benz,Metris Cargo Van,2,4.0,Z,12.6,10.1,11.5,267,N/A
+Mercedes-Benz,Metris Cargo Van LWB,2,4.0,Z,12.6,10.1,11.5,267,N/A
+Mercedes-Benz,Metris Passenger Van,2,4.0,Z,13.3,10.6,12.1,282,N/A
+Mercedes-Benz,S 500 4MATIC SWB Sedan,3,6.0,Z,11.4,8,9.9,231,N/A
+Mercedes-Benz,S 580 4MATIC LWB Sedan,4,8.0,Z,14.3,9.5,12.2,285,N/A
+MINI,Cooper 3 Door,1.5,3.0,Z,8.2,6.2,7.3,170,N/A
+MINI,Cooper 3 Door,1.5,3.0,Z,8.7,6.3,7.6,177,N/A
+MINI,Cooper 5 Door,1.5,3.0,Z,8.2,6.2,7.3,170,N/A
+MINI,Cooper 5 Door,1.5,3.0,Z,8.7,6.3,7.6,177,N/A
+MINI,Cooper Convertible,1.5,3.0,Z,8.2,6.2,7.3,170,N/A
+MINI,Cooper Convertible,1.5,3.0,Z,8.7,6.3,7.6,177,N/A
+MINI,Cooper Countryman ALL4,1.5,3.0,Z,10.2,7.7,9.1,211,N/A
+MINI,Cooper S 3 Door,2,4.0,Z,8.5,6.2,7.5,174,N/A
+MINI,Cooper S 3 Door,2,4.0,Z,10.5,7.3,9.1,211,N/A
+MINI,Cooper S 5 Door,2,4.0,Z,8.5,6.2,7.5,174,N/A
+MINI,Cooper S 5 Door,2,4.0,Z,10.5,7.3,9.1,211,N/A
+MINI,Cooper S Clubman ALL4,2,4.0,Z,10.2,7.4,8.9,207,N/A
+MINI,Cooper S Convertible,2,4.0,Z,8.8,6.5,7.8,182,N/A
+MINI,Cooper S Convertible,2,4.0,Z,10.1,7.1,8.8,205,N/A
+MINI,Cooper S Countryman ALL4,2,4.0,Z,10.4,7.5,9.1,212,N/A
+MINI,John Cooper Works 3 Door,2,4.0,Z,9.3,6.9,8.2,191,N/A
+MINI,John Cooper Works 3 Door,2,4.0,Z,10.5,7.3,9.1,211,N/A
+MINI,John Cooper Works Clubman ALL4,2,4.0,Z,10.1,7.6,9,210,N/A
+MINI,John Cooper Works Convertible,2,4.0,Z,9.6,7.2,8.5,198,N/A
+MINI,John Cooper Works Countryman ALL4,2,4.0,Z,10.4,7.8,9.2,210,N/A
+Mitsubishi,Eclipse Cross 4WD,1.5,4.0,X,9.6,8.9,9.3,216,N/A
+Mitsubishi,Mirage,1.2,3.0,X,6.6,5.6,6.2,143,N/A
+Mitsubishi,Mirage,1.2,3.0,X,7.1,5.8,6.5,151,N/A
+Mitsubishi,Outlander 4WD,2.5,4.0,X,9.7,7.9,8.9,208,N/A
+Mitsubishi,RVR,2,4.0,X,9.7,7.8,8.8,206,N/A
+Mitsubishi,RVR 4WD,2,4.0,X,10.1,8.2,9.2,213,N/A
+Mitsubishi,RVR 4WD,2.4,4.0,X,10.3,8.3,9.4,218,N/A
+Nissan,Altima AWD,2.5,4.0,X,9.1,6.5,7.9,186,N/A
+Nissan,Altima AWD SR/Platinum,2.5,4.0,X,9.3,6.7,8.1,190,N/A
+Nissan,Armada 4WD,5.6,8.0,Z,17.5,12.9,15.4,362,N/A
+Nissan,Frontier,3.8,6.0,X,12.8,9.5,11.3,266,N/A
+Nissan,Frontier 4WD,3.8,6.0,X,13.7,10.6,12.3,288,N/A
+Nissan,Kicks,1.6,4.0,X,7.7,6.6,7.2,169,N/A
+Nissan,Maxima,3.5,6.0,Z,11.6,7.9,9.9,233,N/A
+Nissan,Murano AWD,3.5,6.0,X,12,8.5,10.4,245,N/A
+Nissan,Pathfinder 4WD,3.5,6.0,X,11.6,9.2,10.5,246,N/A
+Nissan,Qashqai,2,4.0,X,8.6,7.3,8,188,N/A
+Nissan,Qashqai,2,4.0,X,10,7.9,9.1,213,N/A
+Nissan,Qashqai AWD,2,4.0,X,9,7.5,8.3,196,N/A
+Nissan,Rogue,1.5,3.0,X,7.8,6.5,7.2,169,N/A
+Nissan,Rogue,2.5,4.0,X,9,7.1,8.1,190,N/A
+Nissan,Rogue AWD,1.5,3.0,X,8.4,6.7,7.6,179,N/A
+Nissan,Rogue AWD SL/Platinum,1.5,3.0,X,8.4,6.8,7.7,181,N/A
+Nissan,Rogue AWD,2.5,4.0,X,9.2,7.2,8.3,195,N/A
+Nissan,Sentra,2,4.0,X,8,6,7.1,167,N/A
+Nissan,Sentra SR,2,4.0,X,8.2,6.1,7.3,171,N/A
+Nissan,Sentra,2,4.0,X,9.2,6.2,7.9,185,N/A
+Nissan,Sentra SR,2,4.0,X,9.4,6.4,8.1,189,N/A
+Nissan,Versa,1.6,4.0,X,7.4,5.9,6.7,158,N/A
+Nissan,Versa,1.6,4.0,X,8.6,6.7,7.7,181,N/A
+Porsche,718 Boxster,2,4.0,Z,11,8.7,10,233,N/A
+Porsche,718 Boxster,2,4.0,Z,11.7,8.9,10.5,245,N/A
+Porsche,718 Boxster T,2,4.0,Z,11.2,8.7,10.1,236,N/A
+Porsche,718 Boxster T,2,4.0,Z,11.7,8.9,10.5,245,N/A
+Porsche,718 Boxster S,2.5,4.0,Z,12.2,9.2,10.9,255,N/A
+Porsche,718 Boxster S,2.5,4.0,Z,12.5,9.6,11.2,263,N/A
+Porsche,718 Boxster GTS 4.0,4,6.0,Z,12.3,9.8,11.1,260,N/A
+Porsche,718 Boxster GTS 4.0,4,6.0,Z,14,10,12.2,284,N/A
+Porsche,718 Cayman,2,4.0,Z,11,8.7,10,233,N/A
+Porsche,718 Cayman,2,4.0,Z,11.7,8.9,10.5,245,N/A
+Porsche,718 Cayman T,2,4.0,Z,11.2,8.7,10.1,236,N/A
+Porsche,718 Cayman T,2,4.0,Z,11.7,8.9,10.5,245,N/A
+Porsche,718 Cayman S,2.5,4.0,Z,12.2,9.2,10.9,255,N/A
+Porsche,718 Cayman S,2.5,4.0,Z,12.5,9.6,11.2,263,N/A
+Porsche,718 Cayman GT4,4,6.0,Z,13,9.9,11.6,271,N/A
+Porsche,718 Cayman GT4,4,6.0,Z,14,10.1,12.2,286,N/A
+Porsche,718 Cayman GTS 4.0,4,6.0,Z,12.3,9.8,11.1,260,N/A
+Porsche,718 Cayman GTS 4.0,4,6.0,Z,14,10,12.2,284,N/A
+Porsche,718 Spyder,4,6.0,Z,13,9.9,11.6,271,N/A
+Porsche,718 Spyder,4,6.0,Z,14,10.1,12.2,286,N/A
+Porsche,911 Carrera,3,6.0,Z,13.1,9.8,11.6,275,N/A
+Porsche,911 Carrera Cabriolet,3,6.0,Z,13.1,9.8,11.6,275,N/A
+Porsche,911 Carrera 4,3,6.0,Z,13.1,9.8,11.6,275,N/A
+Porsche,911 Carrera 4 Cabriolet,3,6.0,Z,13.1,9.7,11.6,275,N/A
+Porsche,911 Carrera S,3,6.0,Z,12.9,10.2,11.7,274,N/A
+Porsche,911 Carrera S,3,6.0,Z,12.8,9.4,11.3,264,N/A
+Porsche,911 Carrera S Cabriolet,3,6.0,Z,12.9,10.2,11.7,273,N/A
+Porsche,911 Carrera S Cabriolet,3,6.0,Z,13.8,9.4,11.8,275,N/A
+Porsche,911 Carrera 4S,3,6.0,Z,13,10.2,11.8,275,N/A
+Porsche,911 Carrera 4S,3,6.0,Z,13.8,9.3,11.8,275,N/A
+Porsche,911 Carrera 4S Cabriolet,3,6.0,Z,12.8,10.2,11.7,273,N/A
+Porsche,911 Carrera 4S Cabriolet,3,6.0,Z,13.8,9.8,12,281,N/A
+Porsche,911 Carrera GTS,3,6.0,Z,13.8,10.1,12.1,289,N/A
+Porsche,911 Carrera GTS,3,6.0,Z,13.5,9.8,11.9,276,N/A
+Porsche,911 Carrera GTS Cabriolet,3,6.0,Z,13.8,10.2,12.2,289,N/A
+Porsche,911 Carrera GTS Cabriolet,3,6.0,Z,13.8,9.6,11.9,278,N/A
+Porsche,911 Carrera 4 GTS,3,6.0,Z,13.8,10.1,12.1,288,N/A
+Porsche,911 Carrera 4 GTS,3,6.0,Z,13.8,10.2,12.2,289,N/A
+Porsche,911 Carrera 4 GTS Cabriolet,3,6.0,Z,13.7,10.7,12.3,288,N/A
+Porsche,911 Carrera 4 GTS Cabriolet,3,6.0,Z,14.7,10.2,12.7,296,N/A
+Porsche,911 GT3,4,6.0,Z,15.6,12.7,14.3,334,N/A
+Porsche,911 GT3,4,6.0,Z,17,13.1,15.2,355,N/A
+Porsche,911 GT3 Touring,4,6.0,Z,15.7,12.7,14.4,335,N/A
+Porsche,911 GT3 Touring,4,6.0,Z,16.9,13.1,15.2,354,N/A
+Porsche,911 Targa 4,3,6.0,Z,13.1,9.8,11.6,275,N/A
+Porsche,911 Targa 4S,3,6.0,Z,13.1,10.2,11.8,274,N/A
+Porsche,911 Targa 4S,3,6.0,Z,13.7,9.8,11.9,278,N/A
+Porsche,911 Targa 4 GTS,3,6.0,Z,13.6,10.7,12.3,287,N/A
+Porsche,911 Targa 4 GTS,3,6.0,Z,14.7,10.2,12.7,296,N/A
+Porsche,911 Turbo,3.7,6.0,Z,15.2,11.9,13.7,321,N/A
+Porsche,911 Turbo Cabriolet,3.7,6.0,Z,15.6,11.8,13.9,324,N/A
+Porsche,911 Turbo S,3.7,6.0,Z,15.3,11.8,13.7,321,N/A
+Porsche,911 Turbo S Cabriolet,3.7,6.0,Z,16,11.8,14.1,328,N/A
+Porsche,Cayenne,3,6.0,Z,13.8,10.7,12.4,289,N/A
+Porsche,Cayenne Coupe,3,6.0,Z,13.8,10.7,12.4,289,N/A
+Porsche,Cayenne S,2.9,6.0,Z,14.7,10.6,12.9,307,N/A
+Porsche,Cayenne S Coupe,2.9,6.0,Z,14.4,11.2,13,305,N/A
+Porsche,Cayenne GTS,4,8.0,Z,15.8,12.3,14.2,331,N/A
+Porsche,Cayenne GTS Coupe,4,8.0,Z,15.2,12.4,14,326,N/A
+Porsche,Cayenne Turbo,4,8.0,Z,16.8,12.4,14.8,343,N/A
+Porsche,Cayenne Turbo Coupe,4,8.0,Z,15.9,12,14.1,330,N/A
+Porsche,Cayenne Turbo GT,4,8.0,Z,16.8,12.4,14.8,345,N/A
+Porsche,Macan,2,4.0,Z,12.4,9.3,11,263,N/A
+Porsche,Macan S,2.9,6.0,Z,13.8,10.1,12.2,289,N/A
+Porsche,Macan GTS,2.9,6.0,Z,13.5,10.7,12.2,290,N/A
+Porsche,Panamera,2.9,6.0,Z,13.1,9.8,11.6,274,N/A
+Porsche,Panamera 4,2.9,6.0,Z,12.8,9.8,11.5,274,N/A
+Porsche,Panamera 4 Executive,2.9,6.0,Z,13.8,10.2,12.2,289,N/A
+Porsche,Panamera 4 ST,2.9,6.0,Z,12.8,10.2,11.7,274,N/A
+Porsche,Panamera 4S,2.9,6.0,Z,12.8,9.8,11.4,276,N/A
+Porsche,Panamera 4S Executive,2.9,6.0,Z,13.8,10.2,12.2,292,N/A
+Porsche,Panamera 4S ST,2.9,6.0,Z,13.8,10.2,12.2,292,N/A
+Porsche,Panamera GTS,4,8.0,Z,15.7,11.2,13.7,323,N/A
+Porsche,Panamera GTS ST,4,8.0,Z,15.7,11.8,13.9,323,N/A
+Porsche,Panamera Turbo S,4,8.0,Z,15.3,11.2,13.5,326,N/A
+Porsche,Panamera Turbo S Executive,4,8.0,Z,15.3,11.2,13.5,326,N/A
+Porsche,Panamera Turbo S ST,4,8.0,Z,15.3,11.2,13.5,326,N/A
+Ram,1500 EcoDiesel,3,6.0,D,10.5,7.3,9,243,N/A
+Ram,1500 HFE EcoDiesel,3,6.0,D,10.4,7.1,8.9,238,N/A
+Ram,1500 eTorque,3.6,6.0,X,11.9,9.4,10.8,253,N/A
+Ram,1500 HFE eTorque,3.6,6.0,X,11.6,9,10.4,245,N/A
+Ram,1500,5.7,8.0,X,16.2,10.5,13.6,320,N/A
+Ram,1500 eTorque,5.7,8.0,X,13,10,11.7,275,N/A
+Ram,1500 4X4 EcoDiesel,3,6.0,D,11.1,8,9.7,260,N/A
+Ram,1500 4X4 eTorque,3.6,6.0,X,12.2,9.7,11.1,260,N/A
+Ram,1500 4X4,5.7,8.0,X,16.1,11,13.8,325,N/A
+Ram,1500 4X4 eTorque,5.7,8.0,X,13.4,10.5,12.1,284,N/A
+Ram,1500 4X4 TRX,6.2,8.0,Z,22.4,16.5,19.8,465,N/A
+Ram,1500 Classic,3.6,6.0,X,13.9,9.6,11.9,280,N/A
+Ram,1500 Classic,5.7,8.0,X,15.9,11.1,13.7,323,N/A
+Ram,1500 Classic 4X4,3.6,6.0,X,14.5,10.2,12.6,295,N/A
+Ram,1500 Classic 4X4,5.7,8.0,X,16.2,11.6,14.1,330,N/A
+Ram,ProMaster City,2.4,4.0,X,11.2,8.3,9.9,232,N/A
+Rolls-Royce,Cullinan,6.7,12.0,Z,20.1,12.1,16.5,386,N/A
+Rolls-Royce,Cullinan Black Badge,6.7,12.0,Z,20.1,12.1,16.5,386,N/A
+Rolls-Royce,Ghost,6.7,12.0,Z,19.9,12.7,16.7,387,N/A
+Rolls-Royce,Ghost Black Badge,6.7,12.0,Z,19.9,12.7,16.7,387,N/A
+Rolls-Royce,Ghost EWB,6.7,12.0,Z,19.9,12.7,16.7,387,N/A
+Rolls-Royce,Phantom,6.7,12.0,Z,20,11.8,16.3,382,N/A
+Rolls-Royce,Phantom EWB,6.7,12.0,Z,20,11.8,16.3,382,N/A
+Subaru,Ascent AWD,2.4,4.0,X,11.7,9,10.5,245,N/A
+Subaru,BRZ,2.4,4.0,Z,11,7.7,9.5,224,N/A
+Subaru,BRZ,2.4,4.0,Z,12,8.8,10.5,247,N/A
+Subaru,Crosstrek AWD,2,4.0,X,8.5,7,7.9,184,N/A
+Subaru,Crosstrek AWD,2,4.0,X,10.5,8.1,9.4,220,N/A
+Subaru,Crosstrek AWD,2.5,4.0,X,8.8,7,8,188,N/A
+Subaru,Forester AWD,2.5,4.0,X,9,7.2,8.2,192,N/A
+Subaru,Forester Wilderness AWD,2.5,4.0,X,9.5,8.3,9,210,N/A
+Subaru,Impreza 4-Door AWD,2,4.0,X,8.3,6.4,7.4,174,N/A
+Subaru,Impreza 4-Door AWD,2,4.0,X,10.1,7.5,9,209,N/A
+Subaru,Impreza 5-Door AWD,2,4.0,X,8.4,6.6,7.6,178,N/A
+Subaru,Impreza 5-Door AWD,2,4.0,X,10.1,7.7,9,211,N/A
+Subaru,Legacy AWD,2.4,4.0,X,9.9,7.3,8.7,205,N/A
+Subaru,Legacy AWD,2.5,4.0,X,8.8,6.7,7.8,184,N/A
+Subaru,Outback AWD,2.4,4.0,X,10.1,7.9,9.1,213,N/A
+Subaru,Outback AWD,2.5,4.0,X,9,7.1,8.2,192,N/A
+Subaru,Outback Wilderness AWD,2.4,4.0,X,10.9,8.9,10,235,N/A
+Subaru,WRX AWD,2.4,4.0,Z,12.7,9.4,11.2,262,N/A
+Subaru,WRX AWD,2.4,4.0,Z,12.3,9,10.8,254,N/A
+Toyota,4Runner 4WD,4,6.0,X,14.9,12.6,13.8,323,N/A
+Toyota,4Runner 4WD (Part-Time 4WD) ,4,6.0,X,14.8,12.5,13.8,321,N/A
+Toyota,C-HR,2,4.0,X,8.7,7.5,8.2,189,N/A
+Toyota,Camry LE/SE,2.5,4.0,X,8.5,6.1,7.4,174,N/A
+Toyota,Camry XSE,2.5,4.0,X,8.6,6.3,7.6,178,N/A
+Toyota,Camry XSE V6,3.5,6.0,X,10.7,7.4,9.2,215,N/A
+Toyota,Camry TRD,3.5,6.0,X,10.8,7.6,9.4,220,N/A
+Toyota,Camry AWD SE,2.5,4.0,X,9.4,6.8,8.2,192,N/A
+Toyota,Camry AWD XSE,2.5,4.0,X,9.5,7,8.4,195,N/A
+Toyota,Camry Hybrid LE,2.5,4.0,X,4.9,4.8,4.9,113,N/A
+Toyota,Camry Hybrid SE/XLE/XSE,2.5,4.0,X,5.3,5,5.1,121,N/A
+Toyota,Corolla,1.8,4.0,X,7.9,6.2,7.1,166,N/A
+Toyota,Corolla XLE,1.8,4.0,X,8.1,6.3,7.3,170,N/A
+Toyota,Corolla,1.8,4.0,X,8,6,7.1,165,N/A
+Toyota,Corolla,2,4.0,X,7.6,5.9,6.8,159,N/A
+Toyota,Corolla XSE,2,4.0,X,7.7,6.1,7,164,N/A
+Toyota,Corolla,2,4.0,X,8.2,6.5,7.4,172,N/A
+Toyota,Corolla Apex Edition,2,4.0,X,7.7,6.2,7,164,N/A
+Toyota,Corolla Hatchback,2,4.0,X,7.5,5.9,6.8,159,N/A
+Toyota,Corolla Hatchback,2,4.0,X,8.4,6.7,7.6,179,N/A
+Toyota,Corolla Hybrid,1.8,4.0,X,4.4,4.5,4.5,106,N/A
+Toyota,Corolla Cross,2,4.0,X,7.6,7,7.3,171,N/A
+Toyota,Corolla Cross AWD,2,4.0,X,8.1,7.4,7.8,182,N/A
+Toyota,GR 86,2.4,4.0,Z,11.1,7.7,9.6,224,N/A
+Toyota,GR 86,2.4,4.0,Z,11.9,8.7,10.5,246,N/A
+Toyota,GR Supra 2.0,2,4.0,Z,9.3,7.2,8.4,195,N/A
+Toyota,GR Supra 3.0,3,6.0,Z,10.6,8,9.4,218,N/A
+Toyota,Highlander AWD,3.5,6.0,X,11.8,8.6,10.3,241,N/A
+Toyota,Highlander Hybrid AWD,2.5,4.0,X,6.7,6.8,6.7,158,N/A
+Toyota,Highlander Hybrid AWD Limited/Platinum,2.5,4.0,X,6.6,6.8,6.7,156,N/A
+Toyota,Prius,1.8,4.0,X,4.4,4.7,4.5,106,N/A
+Toyota,Prius AWD,1.8,4.0,X,4.6,5,4.8,111,N/A
+Toyota,RAV4,2.5,4.0,X,8.8,6.8,7.9,184,N/A
+Toyota,RAV4 (Stop/Start),2.5,4.0,X,8.5,6.8,7.7,180,N/A
+Toyota,RAV4 AWD,2.5,4.0,X,9.5,7.1,8.4,198,N/A
+Toyota,RAV4 AWD (Stop/Start),2.5,4.0,X,8.8,7.1,8,187,N/A
+Toyota,RAV4 AWD LE,2.5,4.0,X,8.7,6.9,7.9,184,N/A
+Toyota,RAV4 AWD TRD Off-Road,2.5,4.0,X,9.5,7.4,8.5,200,N/A
+Toyota,RAV4 Hybrid AWD,2.5,4.0,X,5.8,6.3,6,140,N/A
+Toyota,Sequoia 4WD,5.7,8.0,X,18.5,13.9,16.4,385,N/A
+Toyota,Sienna,2.5,4.0,X,6.6,6.5,6.6,154,N/A
+Toyota,Sienna AWD,2.5,4.0,X,6.8,6.6,6.7,158,N/A
+Toyota,Tacoma 4WD,3.5,6.0,X,13,10.5,11.8,278,N/A
+Toyota,Tacoma 4WD,3.5,6.0,X,13.8,11.4,12.7,299,N/A
+Toyota,Tacoma 4WD D-Cab TRD Off-Road/PRO,3.5,6.0,X,13.8,11.7,12.9,300,N/A
+Toyota,Tundra,3.4,6.0,X,13.1,10.1,11.8,277,N/A
+Toyota,Tundra 4WD,3.4,6.0,X,13.6,10.4,12.2,285,N/A
+Toyota,Tundra 4WD TRD,3.4,6.0,X,13.5,10.6,12.2,286,N/A
+Toyota,Tundra Hybrid 4WD,3.4,6.0,X,12.7,10.5,11.7,274,N/A
+Toyota,Tundra Hybrid 4WD TRD PRO,3.4,6.0,X,12.9,11.6,12.3,287,N/A
+Toyota,Venza AWD,2.5,4.0,X,5.9,6.4,6.1,142,N/A
+Volkswagen,Atlas 4MOTION,2,4.0,X,11.5,9.5,10.6,249,N/A
+Volkswagen,Atlas 4MOTION,3.6,6.0,X,13.8,10.2,12.2,286,N/A
+Volkswagen,Atlas Cross Sport 4MOTION,2,4.0,X,11.6,9.7,10.7,252,N/A
+Volkswagen,Atlas Cross Sport 4MOTION,3.6,6.0,X,13.1,10,11.7,275,N/A
+Volkswagen,Golf GTI,2,4.0,X,9.3,7,8.3,194,N/A
+Volkswagen,Golf GTI,2,4.0,X,9.8,6.9,8.5,198,N/A
+Volkswagen,Golf R,2,4.0,Z,10.3,7.7,9.1,213,N/A
+Volkswagen,Golf R,2,4.0,Z,11.8,8.3,10.2,237,N/A
+Volkswagen,Jetta,1.5,4.0,X,7.7,5.7,6.8,159,N/A
+Volkswagen,Jetta,1.5,4.0,X,8,5.5,6.9,161,N/A
+Volkswagen,Jetta GLI,2,4.0,X,9,6.5,7.9,185,N/A
+Volkswagen,Jetta GLI,2,4.0,X,9.1,6.4,7.9,186,N/A
+Volkswagen,Passat,2,4.0,X,9.7,6.6,8.3,196,N/A
+Volkswagen,Taos,1.5,4.0,X,8.4,6.6,7.6,178,N/A
+Volkswagen,Taos 4MOTION,1.5,4.0,X,9.5,7.4,8.5,200,N/A
+Volkswagen,Tiguan 4MOTION,2,4.0,X,10.6,8,9.4,222,N/A
+Volkswagen,Tiguan R-Line 4MOTION,2,4.0,X,11,8.3,9.8,229,N/A
+Volvo,S60 B5,2,4.0,Z,9,6.7,8,186,N/A
+Volvo,S60 B5 AWD,2,4.0,Z,9.4,6.9,8.3,193,N/A
+Volvo,S90 B6 AWD,2,4.0,Z,10.4,7.5,9.1,212,N/A
+Volvo,V60 T6 AWD,2,4.0,Z,11.3,7.5,9.6,224,N/A
+Volvo,V60 CC T5 AWD,2,4.0,Z,10.9,7.7,9.5,221,N/A
+Volvo,V90 CC B6 AWD,2,4.0,Z,10.6,8.1,9.5,222,N/A
+Volvo,XC40 T4 AWD,2,4.0,X,10.7,7.6,9.3,217,N/A
+Volvo,XC40 T5 AWD,2,4.0,Z,10.7,7.7,9.4,219,N/A
+Volvo,XC60 B5 AWD,2,4.0,Z,10.5,8.1,9.4,219,N/A
+Volvo,XC60 B6 AWD,2,4.0,Z,11,8.7,9.9,232,N/A
+Volvo,XC90 T5 AWD,2,4.0,Z,11.5,8.4,10.1,236,N/A
+Volvo,XC90 T6 AWD,2,4.0,Z,12.4,8.9,10.8,252,N/A
+,,,,,,,,,N/A
+,,,,,,,,,N/A
+4WD/4X4 = Four-wheel drive,,,,,,,,,N/A
+AWD = All-wheel drive,,,,,,,,,N/A
+FFV = Flexible-fuel vehicle,,,,,,,,,N/A
+SWB = Short wheelbase,,,,,,,,,N/A
+LWB = Long wheelbase,,,,,,,,,N/A
+EWB = Extended wheelbase,,,,,,,,,N/A
+A = automatic,,,,,,,,,N/A
+AM = automated manual,,,,,,,,,N/A
+AS = automatic with select shift,,,,,,,,,N/A
+AV = continuously variable,,,,,,,,,N/A
+M = manual,,,,,,,,,N/A
+3 â 10 = Number of gears,,,,,,,,,N/A
+X = regular gasoline,,,,,,,,,N/A
+Z = premium gasoline,,,,,,,,,N/A
+D = diesel,,,,,,,,,N/A
+E = ethanol (E85),,,,,,,,,N/A
+N = natural gas,,,,,,,,,N/A
+"City and highway fuel consumption ratings are shown in litres per 100 kilometres (L/100 km) - the combined rating (55% city, 45% hwy) is shown in L/100 km and in miles per imperial gallon (mpg)",,,,,,,,,N/A
+the tailpipe emissions of carbon dioxide (in grams per kilometre) for combined city and highway driving,,,,,,,,,N/A
+the tailpipe emissions of carbon dioxide rated on a scale from 1 (worst) to 10 (best),,,,,,,,,N/A
+the tailpipe emissions of smog-forming pollutants rated on a scale from 1 (worst) to 10 (best),,,,,,,,,N/A
+Fiat,Punto TwinAir,0.9,2.0,E/N,6.9,8.3,7.48,98,8.25
+Fiat,Grande Punto,1.3,4.0,D,5.6,6.7,5.55,123,N/A

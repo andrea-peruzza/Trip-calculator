@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
-import { Coordinates } from '../types';
+import { Coordinates, WaypointItem } from '../types';
 
 interface MapProps {
   start?: Coordinates | null;
   end?: Coordinates | null;
+  waypoints?: WaypointItem[];
   routeGeometry?: [number, number][];
 }
 
-export const MapView: React.FC<MapProps> = ({ start, end, routeGeometry }) => {
+export const MapView: React.FC<MapProps> = ({ start, end, waypoints = [], routeGeometry }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const routeLayerRef = useRef<L.Polyline | null>(null);
@@ -38,7 +39,7 @@ export const MapView: React.FC<MapProps> = ({ start, end, routeGeometry }) => {
     };
   }, []);
 
-  // Aggiorna marker e polyline
+  // Aggiorna marker e polyline con click informativo sul segmento/paese
   useEffect(() => {
     const map = mapInstanceRef.current;
     const markersLayer = markersLayerRef.current;
@@ -66,6 +67,22 @@ export const MapView: React.FC<MapProps> = ({ start, end, routeGeometry }) => {
       bounds.extend([start.lat, start.lng]);
     }
 
+    // Marker Tappe intermedie (Ambra / Arancione con numerazione)
+    waypoints.forEach((wp, idx) => {
+      if (wp.coords) {
+        const wpMarker = L.circleMarker([wp.coords.lat, wp.coords.lng], {
+          radius: 7,
+          fillColor: '#f59e0b',
+          color: '#ffffff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.9,
+        }).bindPopup(`<b>Tappa ${idx + 1}:</b> ${wp.name || 'Punto intermedio'}`);
+        markersLayer.addLayer(wpMarker);
+        bounds.extend([wp.coords.lat, wp.coords.lng]);
+      }
+    });
+
     // Marker Arrivo (Rosso)
     if (end) {
       const endMarker = L.circleMarker([end.lat, end.lng], {
@@ -80,21 +97,61 @@ export const MapView: React.FC<MapProps> = ({ start, end, routeGeometry }) => {
       bounds.extend([end.lat, end.lng]);
     }
 
-    // Traccia del percorso
+    // Traccia del percorso interattiva (cliccabile per identificare il paese/località)
     if (routeGeometry && routeGeometry.length > 0) {
       const polyline = L.polyline(routeGeometry, {
         color: '#2563eb',
-        weight: 5,
-        opacity: 0.8,
+        weight: 6,
+        opacity: 0.85,
         lineJoin: 'round',
       }).addTo(map);
+
+      // Al click su qualsiasi punto/segmento della linea blu, identifica comune e provincia
+      polyline.on('click', async (e: L.LeafletMouseEvent) => {
+        const { lat, lng } = e.latlng;
+        const popup = L.popup()
+          .setLatLng([lat, lng])
+          .setContent('<div class="p-1 text-xs"><b>Rilevamento località...</b></div>')
+          .openOn(map);
+
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&accept-language=it,en`,
+            { headers: { 'User-Agent': 'TripCalculatorApp/1.0' } }
+          );
+          if (res.ok) {
+            const data = await res.json();
+            const addr = data.address || {};
+            const town = addr.village || addr.town || addr.city || addr.municipality || addr.hamlet || 'Comune non specificato';
+            const county = addr.county || '';
+            const state = addr.state || '';
+            const country = addr.country || 'Italia';
+            const road = addr.road || '';
+
+            const content = `
+              <div class="text-xs space-y-1">
+                <div class="font-bold text-slate-800 text-sm">📍 ${town}</div>
+                ${county ? `<div class="text-slate-600">Provincia: <b>${county}</b></div>` : ''}
+                ${state ? `<div class="text-slate-500">Regione: ${state} (${country})</div>` : ''}
+                ${road ? `<div class="text-[11px] text-blue-600 font-medium">Tratta: ${road}</div>` : ''}
+                <div class="text-[10px] text-slate-400 mt-1">Coord: ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>
+              </div>
+            `;
+            popup.setContent(content);
+          } else {
+            popup.setContent(`<div class="text-xs">Punto percorso: ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>`);
+          }
+        } catch {
+          popup.setContent(`<div class="text-xs">Punto percorso: ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>`);
+        }
+      });
 
       routeLayerRef.current = polyline;
       map.fitBounds(polyline.getBounds(), { padding: [40, 40] });
     } else if (bounds.isValid()) {
       map.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 });
     }
-  }, [start, end, routeGeometry]);
+  }, [start, end, waypoints, routeGeometry]);
 
   return (
     <div className="relative w-full h-[360px] md:h-full min-h-[320px] rounded-2xl overflow-hidden border border-slate-200 shadow-sm z-0">

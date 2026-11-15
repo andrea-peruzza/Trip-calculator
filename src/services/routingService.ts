@@ -1,11 +1,11 @@
-import { Coordinates, RouteCalculationResult, VehicleType } from '../types';
-import { calculateTollCost } from './tollService';
+import { Coordinates, RouteCalculationResult, VehicleType, WaypointItem } from '../types';
+import { calculatePreciseToll, findNearestBooth } from './tollService';
 
 /**
  * Servizio di Routing 100% GRATUITO basato su OpenStreetMap (Valhalla & OSRM).
  * 
- * - Valhalla: Supporta opzione "Evita pedaggi", percorsi alternativi e routing ponderato
- * - OSRM: Fallback robusto ad alta disponibilità
+ * - Valhalla: Supporta opzione "Evita pedaggi", tappe intermedie multiple, percorsi alternativi e routing ponderato
+ * - OSRM: Fallback robusto ad alta disponibilità con supporto waypoints
  */
 
 // Decodifica polyline Valhalla (precisione 6 decimali)
@@ -48,34 +48,58 @@ function parseValhallaTrip(
 ): RouteCalculationResult {
   const summary = trip.summary;
   const distanceKm = Math.round(summary.length * 10) / 10;
-  const durationMinutes = Math.round(summary.time / 60);
+  // Riduzione del 20% sul tempo stimato per riflettere la velocità reale di guida
+  const rawDurationMinutes = summary.time / 60;
+  const durationMinutes = Math.max(1, Math.round(rawDurationMinutes * 0.8));
 
-  const leg = trip.legs[0];
-  const coordinates = decodePolyline(leg.shape, 6);
-
-  // Calcola km autostradali e verifica se ci sono tratti a pedaggio
+  // Concatena tutte le legs (se ci sono tappe intermedie)
+  const legs = trip.legs || [];
+  let coordinates: [number, number][] = [];
   let highwayDistanceKm = 0;
   const hasToll = Boolean(summary.has_toll && !avoidTolls);
 
-  if (leg.maneuvers) {
-    leg.maneuvers.forEach((m: any) => {
-      const isMotorway = m.highway || (m.street_names && m.street_names.some((s: string) => /^A\d+/i.test(s) || /autostrada/i.test(s)));
-      if (isMotorway) {
-        highwayDistanceKm += m.length || 0;
-      }
-    });
-  }
+  let tollStartCoord: [number, number] | null = null;
+  let tollEndCoord: [number, number] | null = null;
+
+  legs.forEach((leg: any) => {
+    const legCoords = decodePolyline(leg.shape, 6);
+    coordinates = coordinates.concat(legCoords);
+
+    if (leg.maneuvers) {
+      leg.maneuvers.forEach((m: any) => {
+        const isMotorway = m.highway || (m.street_names && m.street_names.some((s: string) => /^A\d+/i.test(s) || /autostrada/i.test(s)));
+        if (isMotorway) {
+          highwayDistanceKm += m.length || 0;
+        }
+
+        if (m.toll) {
+          if (!tollStartCoord && m.begin_shape_index !== undefined && legCoords[m.begin_shape_index]) {
+            tollStartCoord = legCoords[m.begin_shape_index];
+          }
+          if (m.end_shape_index !== undefined && legCoords[m.end_shape_index]) {
+            tollEndCoord = legCoords[m.end_shape_index];
+          }
+        }
+      });
+    }
+  });
+
   highwayDistanceKm = Math.round(highwayDistanceKm * 10) / 10;
+
+  // Trova caselli effettivi corrispondenti ai punti di ingresso e uscita
+  const entryBooth = tollStartCoord ? findNearestBooth(tollStartCoord, 18) : null;
+  const exitBooth = tollEndCoord ? findNearestBooth(tollEndCoord, 18) : null;
 
   let tollCost = 0;
   let tollSummary = 'Nessun pedaggio';
   let tollType: 'free_toll_system' | 'estimated_highway' | 'mixed' | 'no_toll' = 'no_toll';
+  let foundEntryName: string | undefined = undefined;
+  let foundExitName: string | undefined = undefined;
 
   if (hasToll && highwayDistanceKm > 0) {
-    const tollInfo = calculateTollCost(
-      originName,
-      destinationName,
-      distanceKm,
+    const tollInfo = calculatePreciseToll(
+      entryBooth,
+      exitBooth,
       highwayDistanceKm,
       vehicleType,
       hasMotoDiscount
@@ -83,6 +107,8 @@ function parseValhallaTrip(
     tollCost = tollInfo.tollCost;
     tollSummary = tollInfo.notes;
     tollType = tollInfo.isExactPair ? 'free_toll_system' : 'estimated_highway';
+    foundEntryName = tollInfo.entryBooth;
+    foundExitName = tollInfo.exitBooth;
   } else {
     tollSummary = avoidTolls ? 'Percorso senza pedaggi (strade ordinarie/gratuite)' : 'Viabilità ordinaria senza pedaggio';
   }
@@ -99,6 +125,8 @@ function parseValhallaTrip(
     tollType,
     geometry: coordinates,
     summary: tollSummary,
+    entryBooth: foundEntryName,
+    exitBooth: foundExitName,
     hasToll,
     routeName,
   };
@@ -111,23 +139,29 @@ export async function calculateRoute(
   destinationName: string,
   vehicleType: VehicleType,
   hasMotoDiscount: boolean = false,
-  avoidTolls: boolean = false
+  avoidTolls: boolean = false,
+  waypoints: WaypointItem[] = []
 ): Promise<RouteCalculationResult> {
+  const validWaypoints = waypoints.filter(wp => wp.coords !== null) as { id: string; name: string; coords: Coordinates }[];
+
+  const allLocations = [
+    { lat: start.lat, lon: start.lng },
+    ...validWaypoints.map(wp => ({ lat: wp.coords.lat, lon: wp.coords.lng })),
+    { lat: end.lat, lon: end.lng }
+  ];
+
   // 1. Prova prima con Valhalla (OpenStreetMap FOSSGIS)
   try {
     const valhallaUrl = 'https://valhalla1.openstreetmap.de/route';
     const valhallaBody = {
-      locations: [
-        { lat: start.lat, lon: start.lng },
-        { lat: end.lat, lon: end.lng }
-      ],
+      locations: allLocations,
       costing: 'auto',
       costing_options: {
         auto: {
           use_tolls: avoidTolls ? 0 : 1,
         }
       },
-      alternates: avoidTolls ? 0 : 1
+      alternates: (avoidTolls || validWaypoints.length > 0) ? 0 : 1
     };
 
     const res = await fetch(valhallaUrl, {
@@ -176,12 +210,18 @@ export async function calculateRoute(
     console.warn('Valhalla routing fallback to OSRM:', err);
   }
 
-  // 2. Fallback su OSRM
-  const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${start.lng},${start.lat};${end.lng},${end.lat}?overview=full&geometries=geojson&steps=true`;
+  // 2. Fallback su OSRM con tutte le coordinate separate da punto e virgola
+  const osrmCoordsStr = [
+    `${start.lng},${start.lat}`,
+    ...validWaypoints.map(wp => `${wp.coords.lng},${wp.coords.lat}`),
+    `${end.lng},${end.lat}`
+  ].join(';');
+
+  const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${osrmCoordsStr}?overview=full&geometries=geojson&steps=true`;
 
   const response = await fetch(osrmUrl);
   if (!response.ok) {
-    throw new Error('Impossibile calcolare il percorso. Verifica i punti di partenza e arrivo.');
+    throw new Error('Impossibile calcolare il percorso. Verifica i punti di partenza, arrivo e tappe.');
   }
 
   const data = await response.json();
@@ -191,7 +231,9 @@ export async function calculateRoute(
 
   const route = data.routes[0];
   const distanceKm = Math.round((route.distance / 1000) * 10) / 10;
-  const durationMinutes = Math.round(route.duration / 60);
+  // Riduzione del 20% sul tempo stimato per riflettere la velocità reale
+  const rawDurationMinutes = route.duration / 60;
+  const durationMinutes = Math.max(1, Math.round(rawDurationMinutes * 0.8));
 
   let highwayDistanceMeters = 0;
   const legs = route.legs || [];
@@ -215,17 +257,20 @@ export async function calculateRoute(
 
   const highwayKm = Math.round((highwayDistanceMeters / 1000) * 10) / 10;
 
-  const tollInfo = calculateTollCost(
-    originName,
-    destinationName,
-    distanceKm,
+  const leafletCoordinates: [number, number][] = route.geometry.coordinates.map(
+    (coord: [number, number]) => [coord[1], coord[0]]
+  );
+
+  // Trova caselli più vicini a inizio e fine autostrada
+  const entryBooth = leafletCoordinates.length > 0 ? findNearestBooth(leafletCoordinates[0], 25) : null;
+  const exitBooth = leafletCoordinates.length > 0 ? findNearestBooth(leafletCoordinates[leafletCoordinates.length - 1], 25) : null;
+
+  const tollInfo = calculatePreciseToll(
+    entryBooth,
+    exitBooth,
     avoidTolls ? 0 : highwayKm,
     vehicleType,
     hasMotoDiscount
-  );
-
-  const leafletCoordinates: [number, number][] = route.geometry.coordinates.map(
-    (coord: [number, number]) => [coord[1], coord[0]]
   );
 
   return {
@@ -238,6 +283,8 @@ export async function calculateRoute(
     tollType: avoidTolls ? 'no_toll' : (tollInfo.isExactPair ? 'free_toll_system' : 'estimated_highway'),
     geometry: leafletCoordinates,
     summary: avoidTolls ? 'Percorso senza pedaggi' : tollInfo.notes,
+    entryBooth: tollInfo.entryBooth,
+    exitBooth: tollInfo.exitBooth,
     hasToll: !avoidTolls && tollInfo.tollCost > 0,
     routeName: 'Percorso Principale',
   };

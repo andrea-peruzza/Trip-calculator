@@ -1,158 +1,212 @@
 import { VehicleType } from '../types';
-
-/**
- * Servizio di Calcolo Pedaggi 100% GRATUITO.
- * 
- * In Italia il pedaggio autostradale è regolamentato per legge (ART) ed è deterministico:
- * Pedaggio = (km_autostrada * tariffa_base) * 1.22 (IVA) con arrotondamento ai 10 centesimi di euro.
- * 
- * Include:
- * 1. Database tariffe esatte per i corridoi autostradali più frequenti
- * 2. Algoritmo chilometrico per qualsiasi altra tratta
- * 3. Riconoscimento autostrade e superstrade gratuite (A2 Salerno-RC, GRA Roma, SS 4 corsie, ecc.)
- * 4. Gestione sconti speciali (es. Sconto Telepass Moto 30%)
- */
+import { CASELLI_ITALIA, CaselloInfo } from '../data/tollBooths';
 
 export interface TollEstimate {
   tollCost: number;
   tollKm: number;
   isExactPair: boolean;
   notes: string;
+  entryBooth?: string;
+  exitBooth?: string;
 }
 
-// Coppie di caselli e città principali con tariffe ufficiali di riferimento (Classe A - 2 assi)
-const TOLL_DATABASE: Record<string, number> = {
-  // Tratte A1 / Nord-Sud
-  'milano-roma': 42.40,
-  'roma-milano': 42.40,
-  'milano-bologna': 15.30,
-  'bologna-milano': 15.30,
-  'milano-firenze': 21.80,
-  'firenze-milano': 21.80,
-  'bologna-firenze': 6.50,
-  'firenze-bologna': 6.50,
-  'firenze-roma': 18.90,
-  'roma-firenze': 18.90,
-  'roma-napoli': 15.60,
-  'napoli-roma': 15.60,
-  'milano-napoli': 58.00,
-  'napoli-milano': 58.00,
+// Calcola distanza in km tra due coordinate GPS (formula Haversine)
+export function getDistanceKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371; // Raggio Terra in km
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
 
-  // Tratte A4 / Est-Ovest
-  'torino-milano': 17.50,
-  'milano-torino': 17.50,
-  'milano-venezia': 21.50,
-  'venezia-milano': 21.50,
-  'milano-verona': 11.20,
-  'verona-milano': 11.20,
-  'verona-venezia': 10.30,
-  'venezia-verona': 10.30,
-  'milano-brescia': 7.40,
-  'brescia-milano': 7.40,
+// Trova il casello più vicino ad un punto geografico entro una certa soglia di tolleranza (es. 15 km)
+export function findNearestBooth(coord: [number, number], maxDistKm: number = 15): CaselloInfo | null {
+  let closest: CaselloInfo | null = null;
+  let minDist = maxDistKm;
 
-  // Tratte A14 / Adriatica
-  'bologna-ancona': 15.80,
-  'ancona-bologna': 15.80,
-  'bologna-bari': 49.30,
-  'bari-bologna': 49.30,
-  'bologna-rimini': 8.60,
-  'rimini-bologna': 8.60,
+  for (const booth of CASELLI_ITALIA) {
+    const d = getDistanceKm(coord[0], coord[1], booth.lat, booth.lng);
+    if (d < minDist) {
+      minDist = d;
+      closest = booth;
+    }
+  }
 
-  // Tratte Liguria e Nord
-  'milano-genova': 10.60,
-  'genova-milano': 10.60,
-  'torino-genova': 12.40,
-  'genova-torino': 12.40,
+  return closest;
+}
+
+// Coppie di caselli e tratte dirette frequenti con tariffa ufficiale di riferimento (Classe A)
+const OFFICIAL_BOOTH_PAIRS: Record<string, number> = {
+  // A1
+  'a1-mi-sud:a1-bologna-casalecchio': 15.30,
+  'a1-bologna-casalecchio:a1-mi-sud': 15.30,
+  'a1-mi-sud:a1-firenze-nord': 22.00,
+  'a1-firenze-nord:a1-mi-sud': 22.00,
+  'a1-mi-sud:a1-roma-nord': 42.40,
+  'a1-roma-nord:a1-mi-sud': 42.40,
+  'a1-mi-sud:a1-napoli-nord': 58.00,
+  'a1-napoli-nord:a1-mi-sud': 58.00,
+  'a1-bologna-casalecchio:a1-firenze-nord': 6.70,
+  'a1-firenze-nord:a1-bologna-casalecchio': 6.70,
+  'a1-firenze-sud:a1-roma-nord': 19.10,
+  'a1-roma-nord:a1-firenze-sud': 19.10,
+  'a1-roma-sud:a1-napoli-nord': 15.60,
+  'a1-napoli-nord:a1-roma-sud': 15.60,
+  'a1-mi-sud:a1-parma': 8.30,
+  'a1-parma:a1-mi-sud': 8.30,
+  'a1-mi-sud:a1-reggio-emilia': 10.50,
+  'a1-reggio-emilia:a1-mi-sud': 10.50,
+  'a1-mi-sud:a1-modena-nord': 12.10,
+  'a1-modena-nord:a1-mi-sud': 12.10,
+
+  // A4
+  'a4-torino-ronchi:a4-milano-ghisolfa': 17.50,
+  'a4-milano-ghisolfa:a4-torino-ronchi': 17.50,
+  'a4-milano-est:a4-brescia-centro': 7.40,
+  'a4-brescia-centro:a4-milano-est': 7.40,
+  'a4-milano-est:a4-verona-sud': 11.20,
+  'a4-verona-sud:a4-milano-est': 11.20,
+  'a4-milano-est:a4-padova-est': 17.10,
+  'a4-padova-est:a4-milano-est': 17.10,
+  'a4-milano-est:a4-venezia-mestre': 21.50,
+  'a4-venezia-mestre:a4-milano-est': 21.50,
+  'a4-verona-sud:a4-venezia-mestre': 10.30,
+  'a4-venezia-mestre:a4-verona-sud': 10.30,
+  'a4-padova-est:a4-venezia-mestre': 3.20,
+  'a4-venezia-mestre:a4-padova-est': 3.20,
+  'a4-venezia-est:a4-trieste-lisert': 11.50,
+  'a4-venezia-est:a4-monfalcone-est': 11.50,
+
+  // A23 / A4 / A28 Tratta Udine Sud <-> Conegliano
+  'a23-udine-sud:a28-conegliano': 9.40,
+  'a28-conegliano:a23-udine-sud': 9.40,
+  'a23-udine-sud:a27-conegliano': 9.40,
+  'a27-conegliano:a23-udine-sud': 9.40,
+  'a23-udine-sud:a4-venezia-est': 8.90,
+  'a4-venezia-est:a23-udine-sud': 8.90,
+  'a23-udine-nord:a28-conegliano': 10.40,
+  'a28-conegliano:a23-udine-nord': 10.40,
+
+  // A14
+  'a14-bologna-san-lazzaro:a14-rimini-sud': 8.60,
+  'a14-rimini-sud:a14-bologna-san-lazzaro': 8.60,
+  'a14-bologna-san-lazzaro:a14-ancona-nord': 15.80,
+  'a14-ancona-nord:a14-bologna-san-lazzaro': 15.80,
+  'a14-bologna-san-lazzaro:a14-pescara-ovest': 26.50,
+  'a14-pescara-ovest:a14-bologna-san-lazzaro': 26.50,
+  'a14-bologna-san-lazzaro:a14-bari-nord': 49.30,
+  'a14-bari-nord:a14-bologna-san-lazzaro': 49.30,
+
+  // A22
+  'a22-verona-nord:a22-brennero': 17.90,
+  'a22-brennero:a22-verona-nord': 17.90,
+  'a22-modena-nord:a22-brennero': 25.20,
+  'a22-brennero:a22-modena-nord': 25.20,
+  'a22-verona-nord:a22-trento-nord': 7.10,
+  'a22-trento-nord:a22-verona-nord': 7.10,
+  'a22-verona-nord:a22-bolzano-sud': 11.20,
+  'a22-bolzano-sud:a22-verona-nord': 11.20,
 };
 
-// Autostrade note che sono storicamente e legalmente GRATUITE in Italia
-export const FREE_MOTORWAYS = [
-  'A2', // Salerno - Reggio Calabria (Autostrada del Mediterraneo)
-  'A19', // Palermo - Catania (in gran parte libera)
-  'A29', // Palermo - Mazara del Vallo
-  'GRA', // Grande Raccordo Anulare Roma
-  'A90', // Altra denominazione GRA
-  'A91', // Roma - Fiumicino
-  'Tangenziale di Catania',
-];
-
 /**
- * Calcola o stima il pedaggio per una tratta
+ * Calcolo del pedaggio autostradale preciso basato sull'effettivo casello di ingresso e casello di uscita.
  */
-export function calculateTollCost(
-  originCity: string,
-  destinationCity: string,
-  totalDistanceKm: number,
+export function calculatePreciseToll(
+  entryBooth: CaselloInfo | null,
+  exitBooth: CaselloInfo | null,
   highwayKm: number,
   vehicleType: VehicleType,
   hasMotoDiscount: boolean = false
 ): TollEstimate {
-  // 1. Pulizia delle stringhe di città per il lookup nel database tariffe esatte
-  const cleanCity = (c: string) => c.toLowerCase().trim().replace(/^(comune di|città di)\s+/i, '');
-  const from = cleanCity(originCity);
-  const to = cleanCity(destinationCity);
-  const lookupKey = `${from}-${to}`;
-
-  if (TOLL_DATABASE[lookupKey]) {
-    let baseToll = TOLL_DATABASE[lookupKey];
-    // Sconto moto 30% (Telepass / UnipolMove Moto)
-    if (vehicleType === 'motorcycle' && hasMotoDiscount) {
-      baseToll = Math.round(baseToll * 0.7 * 10) / 10;
-      return {
-        tollCost: baseToll,
-        tollKm: Math.round(highwayKm || totalDistanceKm * 0.8),
-        isExactPair: true,
-        notes: `Tariffa ufficiale tratta (con sconto Telepass Moto 30%)`,
-      };
-    }
-    return {
-      tollCost: baseToll,
-      tollKm: Math.round(highwayKm || totalDistanceKm * 0.8),
-      isExactPair: true,
-      notes: `Tariffa ufficiale tratta (${originCity} ➔ ${destinationCity})`,
-    };
-  }
-
-  // 2. Se i km di autostrada sono 0 o trascurabili, pedaggio = 0
-  if (highwayKm < 5) {
+  if (highwayKm < 3) {
     return {
       tollCost: 0,
       tollKm: 0,
       isExactPair: false,
-      notes: 'Percorso su viabilità ordinaria o superstrade non a pedaggio',
+      notes: 'Nessun pedaggio (viabilità ordinaria)',
     };
   }
 
-  // 3. Verifica se la tratta è quasi interamente coperta da autostrada gratuita (es. A2 Salerno-RC)
-  const isSouthFreeHighway = (from.includes('salerno') || from.includes('cosenza') || from.includes('reggio calabria')) &&
-                             (to.includes('salerno') || to.includes('cosenza') || to.includes('reggio calabria'));
+  // 1. Se entrambi i caselli sono stati identificati lungo il tragitto
+  if (entryBooth && exitBooth && entryBooth.id !== exitBooth.id) {
+    const pairKey = `${entryBooth.id}:${exitBooth.id}`;
+    const reverseKey = `${exitBooth.id}:${entryBooth.id}`;
 
-  if (isSouthFreeHighway) {
+    let exactPrice = OFFICIAL_BOOTH_PAIRS[pairKey] || OFFICIAL_BOOTH_PAIRS[reverseKey];
+
+    // Se non presente nella tabella diretta, calcola la tariffa basata sulla distanza chilometrica reale tra i caselli
+    if (!exactPrice) {
+      let boothKm = highwayKm;
+      if (entryBooth.kmProgressivo !== undefined && exitBooth.kmProgressivo !== undefined && entryBooth.highway === exitBooth.highway) {
+        boothKm = Math.abs(exitBooth.kmProgressivo - entryBooth.kmProgressivo);
+      }
+      // Tariffa chilometrica ufficiale italiana media (con IVA 22% e arrotondamento ai 10 centesimi come da regolamento ART)
+      exactPrice = Math.round(boothKm * 0.083 * 10) / 10;
+    }
+
+    if (vehicleType === 'motorcycle' && hasMotoDiscount) {
+      exactPrice = Math.round(exactPrice * 0.7 * 10) / 10;
+    }
+
     return {
-      tollCost: 0,
-      tollKm: highwayKm,
-      isExactPair: false,
-      notes: 'Tratta su A2 Autostrada del Mediterraneo (senza pedaggio)',
+      tollCost: exactPrice,
+      tollKm: Math.round(highwayKm),
+      isExactPair: true,
+      entryBooth: entryBooth.name,
+      exitBooth: exitBooth.name,
+      notes: `Casello Ingresso: ${entryBooth.name} ➔ Casello Uscita: ${exitBooth.name}${
+        vehicleType === 'motorcycle' && hasMotoDiscount ? ' (con sconto moto 30%)' : ''
+      }`,
     };
   }
 
-  // 4. Algoritmo deterministico basato sulla media chilometrica italiana ART
-  // Media italiana: ~0.082 €/km (IVA 22% inclusa per Classe A)
-  // Per tratte appenniniche/alpine con molti viadotti e gallerie si attesta sui 0.090 €/km
-  const ratePerKm = 0.083;
-  let estimatedToll = highwayKm * ratePerKm;
+  // 2. Se è stato rilevato un solo casello (es. barriera fissa)
+  if (entryBooth || exitBooth) {
+    const singleBooth = (entryBooth || exitBooth)!;
+    let toll = Math.round(highwayKm * 0.083 * 10) / 10;
+    if (vehicleType === 'motorcycle' && hasMotoDiscount) {
+      toll = Math.round(toll * 0.7 * 10) / 10;
+    }
+    return {
+      tollCost: toll,
+      tollKm: Math.round(highwayKm),
+      isExactPair: false,
+      entryBooth: entryBooth?.name,
+      exitBooth: exitBooth?.name,
+      notes: `Tratta con casello ${singleBooth.name} (~${Math.round(highwayKm)} km)`,
+    };
+  }
 
-  // Arrotondamento ai 10 centesimi di euro (norma di legge italiana per i caselli)
-  estimatedToll = Math.round(estimatedToll * 10) / 10;
-
+  // 3. Stima chilometrica standard se non sono stati agganciati caselli noti
+  let standardToll = Math.round(highwayKm * 0.083 * 10) / 10;
   if (vehicleType === 'motorcycle' && hasMotoDiscount) {
-    estimatedToll = Math.round(estimatedToll * 0.7 * 10) / 10;
+    standardToll = Math.round(standardToll * 0.7 * 10) / 10;
   }
 
   return {
-    tollCost: estimatedToll,
+    tollCost: standardToll,
     tollKm: Math.round(highwayKm),
     isExactPair: false,
-    notes: `Stima chilometrica su circa ${Math.round(highwayKm)} km di autostrada a pedaggio (~0,083 €/km)`,
+    notes: `Stima chilometrica su ${Math.round(highwayKm)} km di autostrada a pedaggio`,
   };
+}
+
+/**
+ * Funzione legacy mantenuta per compatibilità
+ */
+export function calculateTollCost(
+  _originCity: string,
+  _destinationCity: string,
+  _totalDistanceKm: number,
+  highwayKm: number,
+  vehicleType: VehicleType,
+  hasMotoDiscount: boolean = false
+): TollEstimate {
+  return calculatePreciseToll(null, null, highwayKm, vehicleType, hasMotoDiscount);
 }

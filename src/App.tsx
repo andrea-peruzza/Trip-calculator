@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Coordinates, ConsumptionUnit, FuelPrices, FuelType, RouteCalculationResult, VehiclePreset, VehicleType } from './types';
+import { Coordinates, ConsumptionUnit, FuelPrices, FuelType, RouteCalculationResult, VehiclePreset, VehicleType, CarDatasetEntry, WaypointItem } from './types';
 import { VEHICLE_PRESETS } from './data/vehiclePresets';
 import { DEFAULT_FUEL_PRICES } from './services/fuelService';
 import { calculateRoute } from './services/routingService';
@@ -7,7 +7,7 @@ import { LocationInput } from './components/LocationInput';
 import { VehicleSelector } from './components/VehicleSelector';
 import { CostSummary } from './components/CostSummary';
 import { MapView } from './components/Map';
-import { Route, ArrowUpDown, Sparkles, AlertCircle, Compass, CheckCircle2, Coins } from 'lucide-react';
+import { Route, ArrowUpDown, Sparkles, AlertCircle, Compass, CheckCircle2, Coins, Plus, Trash2 } from 'lucide-react';
 
 export function App() {
   // Punti di partenza e arrivo (Preimpostati di esempio: Milano -> Bologna)
@@ -17,17 +17,25 @@ export function App() {
   const [destName, setDestName] = useState('Bologna, Emilia-Romagna, Italia');
   const [destCoords, setDestCoords] = useState<Coordinates | null>({ lat: 44.4949, lng: 11.3426 });
 
+  // Tappe intermedie
+  const [waypoints, setWaypoints] = useState<WaypointItem[]>([]);
+
   // Stato Mezzo e Carburante
   const [vehicleType, setVehicleType] = useState<VehicleType>('car');
   const [selectedPresetId, setSelectedPresetId] = useState<string>('car-diesel-compact');
   const [selectedPreset, setSelectedPreset] = useState<VehiclePreset | null>(VEHICLE_PRESETS[2]);
+  const [selectedCarDataset, setSelectedCarDataset] = useState<CarDatasetEntry | null>(null);
   
   const [fuelType, setFuelType] = useState<FuelType>('diesel');
   const [consumption, setConsumption] = useState<number>(4.8);
+  const [consumptionGPL, setConsumptionGPL] = useState<number>(0);
   const [consumptionUnit, setConsumptionUnit] = useState<ConsumptionUnit>('l/100km');
+  const [co2PerKm, setCo2PerKm] = useState<number | null>(null);
   
   const [fuelPrices] = useState<FuelPrices>(DEFAULT_FUEL_PRICES);
   const [fuelPrice, setFuelPrice] = useState<number>(DEFAULT_FUEL_PRICES.diesel);
+  const [customPetrolPrice, setCustomPetrolPrice] = useState<number>(DEFAULT_FUEL_PRICES.petrol);
+  const [customLpgPrice, setCustomLpgPrice] = useState<number>(DEFAULT_FUEL_PRICES.lpg);
 
   // Opzioni avanzate
   const [avoidTolls, setAvoidTolls] = useState<boolean>(false);
@@ -42,7 +50,24 @@ export function App() {
   const [isLoadingRoute, setIsLoadingRoute] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Scambia partenza e arrivo
+  // Gestione aggiunta/rimozione tappe
+  const handleAddWaypoint = () => {
+    const newId = `wp-${Date.now()}`;
+    setWaypoints([...waypoints, { id: newId, name: '', coords: null }]);
+  };
+
+  const handleUpdateWaypoint = (index: number, name: string, coords: Coordinates | null) => {
+    const updated = [...waypoints];
+    updated[index] = { ...updated[index], name, coords };
+    setWaypoints(updated);
+  };
+
+  const handleRemoveWaypoint = (index: number) => {
+    const updated = waypoints.filter((_, idx) => idx !== index);
+    setWaypoints(updated);
+  };
+
+  // Scambia partenza e arrivo (e inverte le tappe)
   const handleSwapLocations = () => {
     const tempName = originName;
     const tempCoords = originCoords;
@@ -50,10 +75,11 @@ export function App() {
     setOriginCoords(destCoords);
     setDestName(tempName);
     setDestCoords(tempCoords);
+    setWaypoints([...waypoints].reverse());
   };
 
   // Esegui calcolo del percorso e pedaggi
-  const handleCalculate = async (overrideAvoidTolls?: boolean) => {
+  const handleCalculate = async (overrideAvoidTolls?: boolean, currentWaypoints = waypoints) => {
     if (!originCoords || !destCoords) {
       setErrorMessage('Seleziona una città di partenza e una di arrivo valide.');
       return;
@@ -72,7 +98,8 @@ export function App() {
         destName,
         vehicleType,
         hasMotoDiscount,
-        shouldAvoidTolls
+        shouldAvoidTolls,
+        currentWaypoints
       );
       setRouteResult(res);
       setSelectedRouteIndex(0);
@@ -138,15 +165,26 @@ export function App() {
                   <Route className="w-4 h-4 text-blue-600" />
                   Itinerario di Viaggio
                 </span>
-                <button
-                  type="button"
-                  onClick={handleSwapLocations}
-                  className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition text-xs flex items-center gap-1 font-medium"
-                  title="Inverti partenza e arrivo"
-                >
-                  <ArrowUpDown className="w-3.5 h-3.5" />
-                  <span>Inverti</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={handleAddWaypoint}
+                    className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition text-xs flex items-center gap-1 font-semibold cursor-pointer"
+                    title="Aggiungi una tappa intermedia"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Aggiungi Tappa</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSwapLocations}
+                    className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition text-xs flex items-center gap-1 font-medium cursor-pointer"
+                    title="Inverti partenza e arrivo"
+                  >
+                    <ArrowUpDown className="w-3.5 h-3.5" />
+                    <span>Inverti</span>
+                  </button>
+                </div>
               </div>
 
               <div className="space-y-3">
@@ -160,6 +198,29 @@ export function App() {
                   }}
                   accentColor="text-emerald-500"
                 />
+
+                {/* Tappe Intermedie */}
+                {waypoints.map((wp, idx) => (
+                  <div key={wp.id} className="relative flex items-center gap-2">
+                    <div className="flex-1">
+                      <LocationInput
+                        label={`Tappa ${idx + 1}`}
+                        placeholder="Es. Bologna, Modena, Firenze..."
+                        value={wp.name}
+                        onChange={(name, coords) => handleUpdateWaypoint(idx, name, coords)}
+                        accentColor="text-amber-500"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveWaypoint(idx)}
+                      className="mt-5 p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition cursor-pointer shrink-0"
+                      title="Rimuovi tappa"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
 
                 <LocationInput
                   label="Arrivo"
@@ -190,7 +251,7 @@ export function App() {
                         handleCalculate(next);
                       }
                     }}
-                    className={`w-11 h-6 flex items-center rounded-full p-1 transition duration-200 ease-in-out ${
+                    className={`w-11 h-6 flex items-center rounded-full p-1 transition duration-200 ease-in-out cursor-pointer ${
                       avoidTolls ? 'bg-amber-500' : 'bg-slate-300'
                     }`}
                   >
@@ -240,7 +301,7 @@ export function App() {
                           key={idx}
                           type="button"
                           onClick={() => setSelectedRouteIndex(idx)}
-                          className={`p-2.5 rounded-xl border text-left transition flex flex-col justify-between ${
+                          className={`p-2.5 rounded-xl border text-left transition flex flex-col justify-between cursor-pointer ${
                             isSelected
                               ? 'border-blue-500 bg-blue-50/70 shadow-xs ring-1 ring-blue-400'
                               : 'border-slate-200 bg-slate-50/50 hover:bg-slate-100/70'
@@ -282,19 +343,29 @@ export function App() {
                 setSelectedPreset(preset);
                 setSelectedPresetId(preset ? preset.id : 'custom');
               }}
+              selectedCarDataset={selectedCarDataset}
+              onCarDatasetSelect={setSelectedCarDataset}
               fuelType={fuelType}
               onFuelTypeChange={setFuelType}
               consumption={consumption}
               onConsumptionChange={setConsumption}
+              consumptionGPL={consumptionGPL}
+              onConsumptionGPLChange={setConsumptionGPL}
               consumptionUnit={consumptionUnit}
               onConsumptionUnitChange={setConsumptionUnit}
               fuelPrice={fuelPrice}
               onFuelPriceChange={setFuelPrice}
+              customPetrolPrice={customPetrolPrice}
+              onCustomPetrolPriceChange={setCustomPetrolPrice}
+              customLpgPrice={customLpgPrice}
+              onCustomLpgPriceChange={setCustomLpgPrice}
               fuelPrices={fuelPrices}
               hasMotoDiscount={hasMotoDiscount}
               onMotoDiscountToggle={() => setHasMotoDiscount(!hasMotoDiscount)}
               bifuelRatio={bifuelRatio}
               onBifuelRatioChange={setBifuelRatio}
+              co2PerKm={co2PerKm}
+              onCo2PerKmChange={setCo2PerKm}
             />
 
             {/* Riepilogo Costi su Mobile (visibile sotto i controlli) */}
@@ -304,11 +375,19 @@ export function App() {
                   route={activeRoute}
                   originName={activeRoute.originName || originName}
                   destName={activeRoute.destName || destName}
+                  originCoords={originCoords}
+                  destCoords={destCoords}
+                  waypoints={waypoints}
+                  avoidTolls={avoidTolls}
                   vehicle={selectedPreset}
+                  selectedCarDataset={selectedCarDataset}
                   fuelType={fuelType}
                   customConsumption={consumption}
+                  consumptionGPL={consumptionGPL}
+                  bifuelRatio={bifuelRatio}
                   consumptionUnit={consumptionUnit}
                   customFuelPrice={fuelPrice}
+                  co2PerKm={co2PerKm}
                   passengers={passengers}
                   onPassengersChange={setPassengers}
                   isRoundTrip={isRoundTrip}
@@ -321,10 +400,11 @@ export function App() {
 
           {/* Colonna Destra: Mappa e Riepilogo Desktop (7 cols) */}
           <div className="lg:col-span-7 flex flex-col gap-5">
-            {/* Mappa Interattiva Leaflet */}
+            {/* Mappa Interattiva Leaflet con click sui segmenti */}
             <MapView
               start={originCoords}
               end={destCoords}
+              waypoints={waypoints}
               routeGeometry={activeRoute?.geometry}
             />
 
@@ -335,11 +415,19 @@ export function App() {
                   route={activeRoute}
                   originName={activeRoute.originName || originName}
                   destName={activeRoute.destName || destName}
+                  originCoords={originCoords}
+                  destCoords={destCoords}
+                  waypoints={waypoints}
+                  avoidTolls={avoidTolls}
                   vehicle={selectedPreset}
+                  selectedCarDataset={selectedCarDataset}
                   fuelType={fuelType}
                   customConsumption={consumption}
+                  consumptionGPL={consumptionGPL}
+                  bifuelRatio={bifuelRatio}
                   consumptionUnit={consumptionUnit}
                   customFuelPrice={fuelPrice}
+                  co2PerKm={co2PerKm}
                   passengers={passengers}
                   onPassengersChange={setPassengers}
                   isRoundTrip={isRoundTrip}
