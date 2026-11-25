@@ -13,6 +13,7 @@ export const MapView: React.FC<MapProps> = ({ start, end, waypoints = [], routeG
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const routeLayerRef = useRef<L.Polyline | null>(null);
+  const highlightLayerRef = useRef<L.Polyline | null>(null);
   const markersLayerRef = useRef<L.LayerGroup | null>(null);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export const MapView: React.FC<MapProps> = ({ start, end, waypoints = [], routeG
     };
   }, []);
 
-  // Aggiorna marker e polyline con click informativo sul segmento/paese
+  // Aggiorna marker e polyline con click informativo sul segmento/paese ed evidenziazione
   useEffect(() => {
     const map = mapInstanceRef.current;
     const markersLayer = markersLayerRef.current;
@@ -49,6 +50,10 @@ export const MapView: React.FC<MapProps> = ({ start, end, waypoints = [], routeG
     if (routeLayerRef.current) {
       routeLayerRef.current.remove();
       routeLayerRef.current = null;
+    }
+    if (highlightLayerRef.current) {
+      highlightLayerRef.current.remove();
+      highlightLayerRef.current = null;
     }
 
     const bounds: L.LatLngBounds = new L.LatLngBounds([]);
@@ -97,7 +102,7 @@ export const MapView: React.FC<MapProps> = ({ start, end, waypoints = [], routeG
       bounds.extend([end.lat, end.lng]);
     }
 
-    // Traccia del percorso interattiva (cliccabile per identificare il paese/località)
+    // Traccia del percorso interattiva (cliccabile per identificare il paese/località ed evidenziare il tratto)
     if (routeGeometry && routeGeometry.length > 0) {
       const polyline = L.polyline(routeGeometry, {
         color: '#2563eb',
@@ -106,13 +111,49 @@ export const MapView: React.FC<MapProps> = ({ start, end, waypoints = [], routeG
         lineJoin: 'round',
       }).addTo(map);
 
-      // Al click su qualsiasi punto/segmento della linea blu, identifica comune e provincia
+      // Al click su qualsiasi punto/segmento della linea blu, colora il tratto ed identifica comune e provincia
       polyline.on('click', async (e: L.LeafletMouseEvent) => {
         const { lat, lng } = e.latlng;
+
+        // Trova l'indice del punto più vicino lungo la geometria del percorso
+        let closestIdx = 0;
+        let minSqDist = Infinity;
+        for (let i = 0; i < routeGeometry.length; i++) {
+          const pt = routeGeometry[i];
+          const d = (pt[0] - lat) ** 2 + (pt[1] - lng) ** 2;
+          if (d < minSqDist) {
+            minSqDist = d;
+            closestIdx = i;
+          }
+        }
+
+        // Estrai il segmento di strada circostante (circa 25 punti prima e dopo)
+        const startSub = Math.max(0, closestIdx - 25);
+        const endSub = Math.min(routeGeometry.length, closestIdx + 26);
+        const subSegment = routeGeometry.slice(startSub, endSub);
+
+        // Rimuovi eventuale highlight precedente e disegna il nuovo segmento in colore arancione/ambra brillante
+        if (highlightLayerRef.current) {
+          highlightLayerRef.current.remove();
+        }
+        highlightLayerRef.current = L.polyline(subSegment, {
+          color: '#f97316', // Arancione brillante per evidenziare il tratto
+          weight: 9,
+          opacity: 0.95,
+          lineJoin: 'round',
+        }).addTo(map);
+
         const popup = L.popup()
           .setLatLng([lat, lng])
           .setContent('<div class="p-1 text-xs"><b>Rilevamento località...</b></div>')
           .openOn(map);
+
+        popup.on('remove', () => {
+          if (highlightLayerRef.current) {
+            highlightLayerRef.current.remove();
+            highlightLayerRef.current = null;
+          }
+        });
 
         try {
           const res = await fetch(
@@ -133,16 +174,16 @@ export const MapView: React.FC<MapProps> = ({ start, end, waypoints = [], routeG
                 <div class="font-bold text-slate-800 text-sm">📍 ${town}</div>
                 ${county ? `<div class="text-slate-600">Provincia: <b>${county}</b></div>` : ''}
                 ${state ? `<div class="text-slate-500">Regione: ${state} (${country})</div>` : ''}
-                ${road ? `<div class="text-[11px] text-blue-600 font-medium">Tratta: ${road}</div>` : ''}
+                ${road ? `<div class="text-[11px] text-amber-600 font-semibold">Tratto evidenziato: ${road}</div>` : ''}
                 <div class="text-[10px] text-slate-400 mt-1">Coord: ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>
               </div>
             `;
             popup.setContent(content);
           } else {
-            popup.setContent(`<div class="text-xs">Punto percorso: ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>`);
+            popup.setContent(`<div class="text-xs">Tratto percorso: ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>`);
           }
         } catch {
-          popup.setContent(`<div class="text-xs">Punto percorso: ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>`);
+          popup.setContent(`<div class="text-xs">Tratto percorso: ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>`);
         }
       });
 

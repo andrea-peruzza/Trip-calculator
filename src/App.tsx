@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Coordinates, ConsumptionUnit, FuelPrices, FuelType, RouteCalculationResult, VehiclePreset, VehicleType, CarDatasetEntry, WaypointItem } from './types';
 import { VEHICLE_PRESETS } from './data/vehiclePresets';
-import { DEFAULT_FUEL_PRICES } from './services/fuelService';
+import { DEFAULT_FUEL_PRICES, fetchRealTimeFuelPrices } from './services/fuelService';
 import { calculateRoute } from './services/routingService';
 import { LocationInput } from './components/LocationInput';
 import { VehicleSelector } from './components/VehicleSelector';
@@ -32,7 +32,7 @@ export function App() {
   const [consumptionUnit, setConsumptionUnit] = useState<ConsumptionUnit>('l/100km');
   const [co2PerKm, setCo2PerKm] = useState<number | null>(null);
   
-  const [fuelPrices] = useState<FuelPrices>(DEFAULT_FUEL_PRICES);
+  const [fuelPrices, setFuelPrices] = useState<FuelPrices>(DEFAULT_FUEL_PRICES);
   const [fuelPrice, setFuelPrice] = useState<number>(DEFAULT_FUEL_PRICES.diesel);
   const [customPetrolPrice, setCustomPetrolPrice] = useState<number>(DEFAULT_FUEL_PRICES.petrol);
   const [customLpgPrice, setCustomLpgPrice] = useState<number>(DEFAULT_FUEL_PRICES.lpg);
@@ -49,6 +49,30 @@ export function App() {
   const [selectedRouteIndex, setSelectedRouteIndex] = useState<number>(0);
   const [isLoadingRoute, setIsLoadingRoute] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Funzione per aggiornare i prezzi MIMIT in tempo reale
+  const updateRealTimePrices = async () => {
+    try {
+      const livePrices = await fetchRealTimeFuelPrices();
+      setFuelPrices(livePrices);
+
+      // Aggiorna i prezzi predefiniti associati al tipo di carburante corrente
+      setFuelPrice((prevPrice) => {
+        // Se il prezzo corrente coincideva con uno dei valori di default, aggiornalo al nuovo MIMIT
+        if (fuelType === 'petrol') return livePrices.petrol;
+        if (fuelType === 'diesel') return livePrices.diesel;
+        if (fuelType === 'lpg') return livePrices.lpg;
+        if (fuelType === 'cng') return livePrices.cng;
+        if (fuelType === 'electric') return livePrices.electricFast;
+        return prevPrice;
+      });
+
+      setCustomPetrolPrice((prev) => (Math.abs(prev - DEFAULT_FUEL_PRICES.petrol) < 0.001 ? livePrices.petrol : prev));
+      setCustomLpgPrice((prev) => (Math.abs(prev - DEFAULT_FUEL_PRICES.lpg) < 0.001 ? livePrices.lpg : prev));
+    } catch (e) {
+      console.warn('Errore aggiornamento prezzi carburante:', e);
+    }
+  };
 
   // Gestione aggiunta/rimozione tappe
   const handleAddWaypoint = () => {
@@ -88,6 +112,9 @@ export function App() {
     setIsLoadingRoute(true);
     setErrorMessage(null);
 
+    // Recupera i prezzi MIMIT aggiornati a ogni richiesta di calcolo della tratta
+    updateRealTimePrices();
+
     const shouldAvoidTolls = overrideAvoidTolls !== undefined ? overrideAvoidTolls : avoidTolls;
 
     try {
@@ -112,6 +139,7 @@ export function App() {
 
   // Calcola automaticamente all'avvio se le coordinate sono precompilate
   React.useEffect(() => {
+    updateRealTimePrices();
     handleCalculate();
   }, []);
 

@@ -52,24 +52,29 @@ function parseValhallaTrip(
   const rawDurationMinutes = summary.time / 60;
   const durationMinutes = Math.max(1, Math.round(rawDurationMinutes * 0.8));
 
-  // Concatena tutte le legs (se ci sono tappe intermedie)
   const legs = trip.legs || [];
   let coordinates: [number, number][] = [];
-  let highwayDistanceKm = 0;
-  const hasToll = Boolean(summary.has_toll && !avoidTolls);
+  let totalHighwayKm = 0;
+  let totalTollCost = 0;
+  let totalTollDistanceKm = 0;
+  const legNotes: string[] = [];
+  const boothPairs: string[] = [];
+  let primaryEntryBooth: string | undefined;
+  let primaryExitBooth: string | undefined;
 
-  let tollStartCoord: [number, number] | null = null;
-  let tollEndCoord: [number, number] | null = null;
-
-  legs.forEach((leg: any) => {
+  legs.forEach((leg: any, legIndex: number) => {
     const legCoords = decodePolyline(leg.shape, 6);
     coordinates = coordinates.concat(legCoords);
+
+    let legHighwayKm = 0;
+    let tollStartCoord: [number, number] | null = null;
+    let tollEndCoord: [number, number] | null = null;
 
     if (leg.maneuvers) {
       leg.maneuvers.forEach((m: any) => {
         const isMotorway = m.highway || (m.street_names && m.street_names.some((s: string) => /^A\d+/i.test(s) || /autostrada/i.test(s)));
         if (isMotorway) {
-          highwayDistanceKm += m.length || 0;
+          legHighwayKm += m.length || 0;
         }
 
         if (m.toll) {
@@ -82,52 +87,72 @@ function parseValhallaTrip(
         }
       });
     }
+
+    legHighwayKm = Math.round(legHighwayKm * 10) / 10;
+    totalHighwayKm += legHighwayKm;
+
+    const hasLegToll = Boolean(leg.summary?.has_toll && !avoidTolls);
+
+    if (hasLegToll && legHighwayKm > 0) {
+      const entryBooth = tollStartCoord ? findNearestBooth(tollStartCoord, 18) : null;
+      const exitBooth = tollEndCoord ? findNearestBooth(tollEndCoord, 18) : null;
+
+      if (!primaryEntryBooth && entryBooth) primaryEntryBooth = entryBooth.name;
+      if (exitBooth) primaryExitBooth = exitBooth.name;
+
+      const tollInfo = calculatePreciseToll(
+        entryBooth,
+        exitBooth,
+        legHighwayKm,
+        vehicleType,
+        hasMotoDiscount
+      );
+
+      totalTollCost += tollInfo.tollCost;
+      totalTollDistanceKm += tollInfo.tollKm;
+
+      if (tollInfo.entryBooth && tollInfo.exitBooth) {
+        boothPairs.push(`${tollInfo.entryBooth} ➔ ${tollInfo.exitBooth} (€${tollInfo.tollCost.toFixed(2)})`);
+      } else {
+        legNotes.push(`Tratta ${legIndex + 1}: €${tollInfo.tollCost.toFixed(2)}`);
+      }
+    }
   });
 
-  highwayDistanceKm = Math.round(highwayDistanceKm * 10) / 10;
+  totalHighwayKm = Math.round(totalHighwayKm * 10) / 10;
+  totalTollCost = Math.round(totalTollCost * 100) / 100;
 
-  // Trova caselli effettivi corrispondenti ai punti di ingresso e uscita
-  const entryBooth = tollStartCoord ? findNearestBooth(tollStartCoord, 18) : null;
-  const exitBooth = tollEndCoord ? findNearestBooth(tollEndCoord, 18) : null;
-
-  let tollCost = 0;
   let tollSummary = 'Nessun pedaggio';
   let tollType: 'free_toll_system' | 'estimated_highway' | 'mixed' | 'no_toll' = 'no_toll';
-  let foundEntryName: string | undefined = undefined;
-  let foundExitName: string | undefined = undefined;
 
-  if (hasToll && highwayDistanceKm > 0) {
-    const tollInfo = calculatePreciseToll(
-      entryBooth,
-      exitBooth,
-      highwayDistanceKm,
-      vehicleType,
-      hasMotoDiscount
-    );
-    tollCost = tollInfo.tollCost;
-    tollSummary = tollInfo.notes;
-    tollType = tollInfo.isExactPair ? 'free_toll_system' : 'estimated_highway';
-    foundEntryName = tollInfo.entryBooth;
-    foundExitName = tollInfo.exitBooth;
+  if (totalTollCost > 0) {
+    tollType = 'estimated_highway';
+    if (boothPairs.length > 0) {
+      tollSummary = boothPairs.join(' | ');
+    } else if (legNotes.length > 0) {
+      tollSummary = legNotes.join(' + ');
+    } else {
+      tollSummary = `Pedaggio stimato su ${Math.round(totalTollDistanceKm)} km`;
+    }
   } else {
     tollSummary = avoidTolls ? 'Percorso senza pedaggi (strade ordinarie/gratuite)' : 'Viabilità ordinaria senza pedaggio';
   }
 
-  const routeName = defaultRouteName || (hasToll ? 'Autostrada (Più veloce)' : 'Strade Gratuite (Più breve)');
+  const routeName = defaultRouteName || (totalTollCost > 0 ? 'Autostrada (Più veloce)' : 'Strade Gratuite (Più breve)');
 
   return {
     originName,
     destName: destinationName,
     distanceKm,
     durationMinutes,
-    tollDistanceKm: hasToll ? highwayDistanceKm : 0,
-    tollCost,
+    tollDistanceKm: totalTollDistanceKm,
+    tollCost: totalTollCost,
     tollType,
     geometry: coordinates,
     summary: tollSummary,
-    entryBooth: foundEntryName,
-    exitBooth: foundExitName,
-    hasToll,
+    entryBooth: primaryEntryBooth,
+    exitBooth: primaryExitBooth,
+    hasToll: totalTollCost > 0,
     routeName,
   };
 }
@@ -235,10 +260,16 @@ export async function calculateRoute(
   const rawDurationMinutes = route.duration / 60;
   const durationMinutes = Math.max(1, Math.round(rawDurationMinutes * 0.8));
 
-  let highwayDistanceMeters = 0;
+  let totalTollCost = 0;
+  let totalHighwayKm = 0;
+  const boothPairs: string[] = [];
+  let primaryEntryBooth: string | undefined;
+  let primaryExitBooth: string | undefined;
+
   const legs = route.legs || [];
 
-  for (const leg of legs) {
+  legs.forEach((leg: any, legIndex: number) => {
+    let legHighwayMeters = 0;
     const steps = leg.steps || [];
     for (const step of steps) {
       const ref = (step.ref || '').toUpperCase();
@@ -250,27 +281,42 @@ export async function calculateRoute(
                          name.includes('TANGENZIALE');
 
       if (isMotorway) {
-        highwayDistanceMeters += step.distance || 0;
+        legHighwayMeters += step.distance || 0;
       }
     }
-  }
+    const legHighwayKm = Math.round((legHighwayMeters / 1000) * 10) / 10;
+    totalHighwayKm += legHighwayKm;
 
-  const highwayKm = Math.round((highwayDistanceMeters / 1000) * 10) / 10;
+    if (!avoidTolls && legHighwayKm > 0) {
+      const legCoords: [number, number][] = (leg.steps || []).flatMap((s: any) =>
+        (s.geometry?.coordinates || []).map((coord: [number, number]) => [coord[1], coord[0]])
+      );
+
+      const entryBooth = legCoords.length > 0 ? findNearestBooth(legCoords[0], 25) : null;
+      const exitBooth = legCoords.length > 0 ? findNearestBooth(legCoords[legCoords.length - 1], 25) : null;
+
+      if (!primaryEntryBooth && entryBooth) primaryEntryBooth = entryBooth.name;
+      if (exitBooth) primaryExitBooth = exitBooth.name;
+
+      const tollInfo = calculatePreciseToll(
+        entryBooth,
+        exitBooth,
+        legHighwayKm,
+        vehicleType,
+        hasMotoDiscount
+      );
+
+      totalTollCost += tollInfo.tollCost;
+      if (tollInfo.entryBooth && tollInfo.exitBooth) {
+        boothPairs.push(`${tollInfo.entryBooth} ➔ ${tollInfo.exitBooth} (€${tollInfo.tollCost.toFixed(2)})`);
+      } else {
+        boothPairs.push(`Tratta ${legIndex + 1}: €${tollInfo.tollCost.toFixed(2)}`);
+      }
+    }
+  });
 
   const leafletCoordinates: [number, number][] = route.geometry.coordinates.map(
     (coord: [number, number]) => [coord[1], coord[0]]
-  );
-
-  // Trova caselli più vicini a inizio e fine autostrada
-  const entryBooth = leafletCoordinates.length > 0 ? findNearestBooth(leafletCoordinates[0], 25) : null;
-  const exitBooth = leafletCoordinates.length > 0 ? findNearestBooth(leafletCoordinates[leafletCoordinates.length - 1], 25) : null;
-
-  const tollInfo = calculatePreciseToll(
-    entryBooth,
-    exitBooth,
-    avoidTolls ? 0 : highwayKm,
-    vehicleType,
-    hasMotoDiscount
   );
 
   return {
@@ -278,14 +324,14 @@ export async function calculateRoute(
     destName: destinationName,
     distanceKm,
     durationMinutes,
-    tollDistanceKm: avoidTolls ? 0 : tollInfo.tollKm,
-    tollCost: avoidTolls ? 0 : tollInfo.tollCost,
-    tollType: avoidTolls ? 'no_toll' : (tollInfo.isExactPair ? 'free_toll_system' : 'estimated_highway'),
+    tollDistanceKm: avoidTolls ? 0 : totalHighwayKm,
+    tollCost: avoidTolls ? 0 : Math.round(totalTollCost * 100) / 100,
+    tollType: avoidTolls ? 'no_toll' : 'estimated_highway',
     geometry: leafletCoordinates,
-    summary: avoidTolls ? 'Percorso senza pedaggi' : tollInfo.notes,
-    entryBooth: tollInfo.entryBooth,
-    exitBooth: tollInfo.exitBooth,
-    hasToll: !avoidTolls && tollInfo.tollCost > 0,
+    summary: avoidTolls ? 'Percorso senza pedaggi' : (boothPairs.join(' | ') || 'Tratta senza pedaggi'),
+    entryBooth: primaryEntryBooth,
+    exitBooth: primaryExitBooth,
+    hasToll: !avoidTolls && totalTollCost > 0,
     routeName: 'Percorso Principale',
   };
 }
