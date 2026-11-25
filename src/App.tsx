@@ -7,7 +7,7 @@ import { LocationInput } from './components/LocationInput';
 import { VehicleSelector } from './components/VehicleSelector';
 import { CostSummary } from './components/CostSummary';
 import { MapView } from './components/Map';
-import { Route, ArrowUpDown, Sparkles, AlertCircle, Compass, CheckCircle2, Coins, Plus, Trash2 } from 'lucide-react';
+import { Route, ArrowUpDown, Sparkles, AlertCircle, Coins, Plus, Trash2 } from 'lucide-react';
 
 export function App() {
   // Punti di partenza e arrivo (Preimpostati di esempio: Milano -> Bologna)
@@ -152,32 +152,10 @@ export function App() {
     <div className="min-h-screen bg-slate-100/70 text-slate-800 pb-12">
       {/* Top Navigation Bar */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-              <Compass className="w-5 h-5" />
-            </div>
-            <div>
-              <h1 className="text-base font-extrabold text-slate-900 leading-tight flex items-center gap-2">
-                Trip Calculator
-                <span className="text-[10px] font-semibold tracking-wide bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full uppercase">
-                  Open Source
-                </span>
-              </h1>
-              <p className="text-xs text-slate-500">Costi Reali, Consumi e Pedaggi Autostradali</p>
-            </div>
-          </div>
-
-          <div className="hidden sm:flex items-center gap-4 text-xs font-medium text-slate-500">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-              Routing OpenStreetMap Gratuito
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-              Tariffe Caselli Italia
-            </span>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-center">
+          <h1 className="text-2xl font-black tracking-tight text-slate-900">
+            Trip Calculator
+          </h1>
         </div>
       </header>
 
